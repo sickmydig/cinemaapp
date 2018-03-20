@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "469723422488",
+    "firebase_url": "https://mineral-anchor-170904.firebaseio.com",
+    "project_id": "mineral-anchor-170904",
+    "storage_bucket": "mineral-anchor-170904.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469723422488:android:360f71663cd727a4",
+        "android_client_info": {
+          "package_name": "main.java.com.movieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469723422488-nf64smhf7s48sgpges4f2k74vspfjr6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJCoV-oLP1_ECybfOScDclffYJpL9L9CA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
