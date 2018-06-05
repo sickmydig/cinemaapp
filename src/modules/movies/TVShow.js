@@ -1,55 +1,22 @@
-//import React, { Component } from 'react'
+import React, { Component } from 'react'
 import I18n from '../../i18n';
 
 import {
 	StyleSheet,
 	Text,
-	//View,
+	View,
 	Image
 } from 'react-native';
-
-import React, { PropTypes, Component } from 'react';
-import {
-	Platform,
-	View,
-	ListView,
-	RefreshControl
-} from 'react-native';
-import axios from 'axios';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
-import * as moviesActions from './movies.actions';
 import Timeline from 'react-native-timeline-listview'
 
 export default class TVShow extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.onEventPress = this.onEventPress.bind(this)
 		this.renderSelected = this.renderSelected.bind(this)
 		this.renderDetail = this.renderDetail.bind(this)
 
 		this.data = [
-			{
-				time : '3:00',
-				title : 'Manchester city - Manchester United',
-				description: 'Red Devil will surrender against blue devils. ',
-				lineColor:'#009688',
-				icon: require('../img/soccer.png'),
-				imageUrl: 'http://1.bp.blogspot.com/-UTzPAPfIFQw/VbQ_-5z3KpI/AAAAAAAABik/SNxSEZzDSBo/s1600/Manchester-City-Wallpaper-Full-HD-Free-Download_Infographic-BLOG-44.jpg'
-
-			},
-		];
-
-		this.state =
-			{
-				list : {
-					players : [],
-				}
-			}
-
-		/*this.data = [
 			{
 				time: '09:00',
 				title: 'Archery Training',
@@ -85,16 +52,8 @@ export default class TVShow extends Component {
 				icon: require('../img/dumbbell.png'),
 				imageUrl: 'https://cloud.githubusercontent.com/assets/21040043/24240422/20d84f6c-0fe4-11e7-8f1d-9dbc594d0cfa.jpg'
 			}
-		]*/
-		// this.state = {selected: null}
-	}
-
-	componentWillMount() {
-		this._retrievePlayerList();
-	}
-
-	_retrievePlayerList(isRefreshed) {
-
+		]
+		this.state = {selected: null}
 	}
 
 	onEventPress(data){
@@ -105,7 +64,6 @@ export default class TVShow extends Component {
 		if(this.state.selected)
 			return <Text style={{marginTop:10}}>Selected event: {this.state.selected.title} at {this.state.selected.time}</Text>
 	}
-
 
 	renderDetail(rowData, sectionID, rowID) {
 		let title = <Text style={[styles.title]}>{rowData.title}</Text>
@@ -147,19 +105,12 @@ export default class TVShow extends Component {
 					renderDetail={this.renderDetail}
 				/>
 				<Text>
-					{I18n.t('my_tv')}
+					{I18n.t('usGallons')}
 				</Text>
 			</View>
 		);
 	}
 }
-
-TVShow.propTypes = {
-	actions: PropTypes.object.isRequired,
-	list: PropTypes.object.isRequired,
-	type: PropTypes.string.isRequired,
-};
-
 
 const styles = StyleSheet.create({
 	container: {
@@ -188,8 +139,5 @@ const styles = StyleSheet.create({
 	textDescription: {
 		marginLeft: 10,
 		color: 'gray'
-	},
-	textSelected : {
-		color: 'green'
-	},
+	}
 });

@@ -29,7 +29,6 @@ const navigatorStyle = {
 
 const LoadScreen = {
 	screen: 'movieapp.Movies',
-	// screen: 'movieapp.TVShow',
 	title: I18n.t('title'),
 	navigatorStyle,
 	leftButtons: [

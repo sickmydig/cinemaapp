@@ -18,8 +18,7 @@ import CardTwo from './components/CardTwo';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Movies';
 import { iconsMap } from '../../utils/AppIcons';
-import { testGetLocales } from '../test/testGetLocales';
-import I18n from '../../i18n';
+//import { testGetLocales } from '../test';
 
 class Movies extends Component {
 	constructor(props) {
@@ -36,7 +35,7 @@ class Movies extends Component {
 	}
 
 	componentWillMount() {
-
+		//testGetLocales();
 		this._retrieveMovies();
 	}
 
@@ -154,12 +153,12 @@ class Movies extends Component {
 				</Swiper>
 				<View>
 					<View style={styles.listHeading}>
-						<Text style={styles.listHeadingLeft}>{I18n.t('popular') }</Text>
+						<Text style={styles.listHeadingLeft}>Popular</Text>
 						<TouchableOpacity>
 							<Text
 								style={styles.listHeadingRight}
 								onPress={this._viewMoviesList.bind(this, 'popular', 'Popular')}>
-								{I18n.t('now_playing') }
+								Xem tất cả
 							</Text>
 						</TouchableOpacity>
 					</View>
@@ -213,7 +212,6 @@ Movies.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-	console.log(state.movies.appLocales);
 	return {
 		nowPlayingMovies: state.movies.nowPlayingMovies,
 		popularMovies: state.movies.popularMovies
