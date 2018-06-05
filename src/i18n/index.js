@@ -10,8 +10,8 @@ I18n.defaultLocale = 'vn';
 
 I18n.translations = {
 	vn,
-de,
 	en,
+	de,
 };
 
 export default I18n;

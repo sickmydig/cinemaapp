@@ -36,14 +36,13 @@ const texts = {
   cantBeEmpty: 'It cannot be empty',
 	title : 'Tiêu đề',
 	description: 'Description',
-  popular : 'Ưa thích',
-  now_playing: 'Đang trình chiếu',
+  savedResults: 'Saved results',
+  yes: 'Yes',
   no: 'No',
   rate: 'Rate',
   rateAppInPlayStore: 'Please rate this app in Play Store',
   doYouLikeApp: 'Do you like app?',
   unit: 'Unit:',
-	my_tv : 'Chương trình yêu thích của tôi'
 };
 
 const units = {

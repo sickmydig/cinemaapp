@@ -35,7 +35,6 @@ const texts = {
   detailOfResult: 'Detail des Ergebnisses',
   cantBeEmpty: 'Es kann nicht leer sein',
   title: 'Titel',
-	popular : 'Beschreibung',
   description: 'Beschreibung',
   savedResults: 'Gespeicherte Ergebnisse',
   yes: 'Ja',
