@@ -29,6 +29,7 @@ const navigatorStyle = {
 
 const LoadScreen = {
 	screen: 'movieapp.Movies',
+	// screen: 'movieapp.Countdown',
 	title: I18n.t('title'),
 	navigatorStyle,
 	leftButtons: [
@@ -38,9 +39,7 @@ const LoadScreen = {
 	]
 }
 Navigation.startSingleScreenApp({
-	screen:
-		LoadScreen
-	,
+	screen: LoadScreen,
 	drawer: {
 		left: {
 			screen: 'movieapp.Drawer'

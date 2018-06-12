@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import ActionButton from 'react-native-action-button';
 import {
 	RefreshControl,
 	ScrollView,
@@ -18,7 +19,7 @@ import CardTwo from './components/CardTwo';
 import ProgressBar from '../_global/ProgressBar';
 import styles from './styles/Movies';
 import { iconsMap } from '../../utils/AppIcons';
-//import { testGetLocales } from '../test';
+
 
 class Movies extends Component {
 	constructor(props) {
@@ -35,7 +36,6 @@ class Movies extends Component {
 	}
 
 	componentWillMount() {
-		//testGetLocales();
 		this._retrieveMovies();
 	}
 
@@ -162,6 +162,20 @@ class Movies extends Component {
 							</Text>
 						</TouchableOpacity>
 					</View>
+
+
+						{/* Rest of the app comes ABOVE the action button component !*/}
+						<ActionButton buttonColor="rgba(231,76,60,1)" >
+							<ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+								<Icon name="md-search" style={styles.actionButtonIcon} />
+							</ActionButton.Item>
+							<ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+								<Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+							</ActionButton.Item>
+							<ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+								<Icon name="md-done-all" style={styles.actionButtonIcon} />
+							</ActionButton.Item>
+						</ActionButton>
 					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
 						{popularMovies.results.map(info => (
 							<CardTwo key={info.id} info={info} viewMovie={this._viewMovie} />
