@@ -10,6 +10,12 @@ export default function (state = initialState.movies, action) {
 				appLocales: action.payload,
 			};
 
+		case types.RETRIEVE_FAVORITES_SUCCESS:
+			return {
+				...state,
+				favorites: action.favorites
+			};
+
 		case types.RETRIEVE_POPULAR_MOVIES_SUCCESS:
 			return {
 				...state,

@@ -1,4 +1,5 @@
 import I18n from '../i18n';
+
 export default {
 	movies: {
 		details: {},
@@ -7,8 +8,8 @@ export default {
 		nowPlayingMovies: {},
 		popularMovies: {},
 		searchResults: {},
-
+		favorites: {},
 		currentLocale: I18n.currentLocale(),
-		appLocales : [I18n.currentLocale()]
+		appLocales: [I18n.currentLocale()]
 	}
 };

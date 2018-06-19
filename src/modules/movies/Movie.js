@@ -224,6 +224,9 @@ class Movie extends Component {
 						</View>
 					</View>
 					<View style={styles.contentContainer}>
+						<Text></Text>
+					</View>
+					<View style={styles.contentContainer}>
 						<ScrollableTabView
 							onChangeTab={this._onChangeTab}
 							renderTabBar={() => (

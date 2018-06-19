@@ -3,7 +3,7 @@ import { Navigation } from 'react-native-navigation';
 
 import Drawer from './modules/_global/Drawer';
 import Movies from './modules/movies/Movies';
-import TVShow from './modules/movies/TVShow';
+import HotMovies from './modules/movies/HotMovies';
 import MoviesList from './modules/movies/MoviesList';
 import Movie from './modules/movies/Movie';
 import Search from './modules/movies/Search';
@@ -14,5 +14,5 @@ export function registerScreens(store, Provider) {
 	Navigation.registerComponent('movieapp.MoviesList', () => MoviesList, store, Provider);
 	Navigation.registerComponent('movieapp.Search', () => Search, store, Provider);
 	Navigation.registerComponent('movieapp.Drawer', () => Drawer);
-	Navigation.registerComponent('movieapp.TVShow', () => TVShow);
+	Navigation.registerComponent('movieapp.hotMovies', () => HotMovies, store, Provider);
 }

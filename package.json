@@ -53,9 +53,9 @@
 	"description": "Discover movies and tv shows",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/junedomingo/movieapp.git"
+		"url": "git+https://github.com/sickmydig/movieapp.git"
 	},
 	"author": "lam tac <lamptdev@gmail.com>",
 	"license": "MIT",
-	"homepage": "https://github.com/junedomingo/movieapp#readme"
+	"homepage": "https://github.com/sickmydig/movieapp#readme"
 }

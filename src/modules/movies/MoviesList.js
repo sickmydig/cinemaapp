@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
+import { UPCOMING } from '../../constants/ComonNames';
 import * as moviesActions from './movies.actions';
 import CardThree from './components/CardThree';
 import ProgressBar from '../_global/ProgressBar';
@@ -147,6 +148,11 @@ MoviesList.propTypes = {
 	type: PropTypes.string.isRequired,
 	navigator: PropTypes.object
 };
+
+MoviesList.defaultProps = {
+	type: UPCOMING
+};
+
 
 let navigatorStyle = {};
 

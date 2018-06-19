@@ -15,8 +15,11 @@ class Drawer extends Component {
 		super(props);
 
 		this._goToMovies = this._goToMovies.bind(this);
-		this._goToTVShows = this._goToTVShows.bind(this);
+		this._goToFavorites = this._goToFavorites.bind(this);
 		this._openSearch = this._openSearch.bind(this);
+		this.state = {
+			size: 0,
+		};
 	}
 
 	_openSearch() {
@@ -34,10 +37,11 @@ class Drawer extends Component {
 		});
 	}
 
-	_goToTVShows() {
+	_goToFavorites() {
 		this._toggleDrawer();
-		this.props.navigator.popToRoot({
-			screen: 'movieapp.TVShow'
+		this.props.navigator.showModal({
+			screen: 'movieapp.hotMovies',
+			title: 'Favorites movies'
 		});
 	}
 
@@ -53,7 +57,7 @@ class Drawer extends Component {
 		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
-		const shopping = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
+		const favorites = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 		return (
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
 				<View style={styles.container}>
@@ -80,11 +84,11 @@ class Drawer extends Component {
 								TV Shows
 							</Text>
 						</View>
-						<TouchableOpacity onPress={this._goToTVShows}>
+						<TouchableOpacity onPress={this._goToFavorites}>
 							<View style={styles.drawerListItem}>
-								{shopping}
+								{favorites}
 								<Text style={styles.drawerListItemText} >
-									Shopping
+									Favorite
 								</Text>
 							</View>
 						</TouchableOpacity>

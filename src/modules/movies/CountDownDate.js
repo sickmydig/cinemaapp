@@ -9,7 +9,7 @@ const CountDownDate = (leftTime) => {
 		<CountDown
 			until={leftTime.leftTime}
 			onPress={() => alert('hello')}
-			size={12}
+			size={13}
 			timeToShow={['D', 'H', 'M', 'S']}
 		/>
 	);

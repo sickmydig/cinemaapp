@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as types from '../../constants/actionTypes';
-import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
+import { TMDB_URL, TMDB_API_KEY, TMDB_SESSION_ID } from '../../constants/api';
 
 // LOCALE
 export const setLocales = payload => ({
@@ -13,6 +13,25 @@ export function retrieveMoviesGenresSuccess(res) {
 	return {
 		type: types.RETRIEVE_MOVIES_GENRES_SUCCESS,
 		moviesGenres: res.data
+	};
+}
+
+export function retrieveFavorites(res) {
+	return function (dispatch) {
+		return axios.get(`${TMDB_URL}/account/sickmydig/favorite/movies?api_key=${TMDB_API_KEY}&session_id=${TMDB_SESSION_ID}`)
+			.then(res => {
+				dispatch(retrieveSuccessFavorite(res));
+			})
+			.catch(error => {
+				console.log(error); //eslint-disable-line
+			});
+	}
+}
+// get list of favorite movies
+export function retrieveSuccessFavorite(res) {
+	return {
+		type: types.RETRIEVE_FAVORITES_SUCCESS,
+		favorites: res.data
 	};
 }
 
