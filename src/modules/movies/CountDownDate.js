@@ -3,7 +3,7 @@ import CountDown from 'react-native-countdown-component';
 
 // leftTime is total time in seconds
 const CountDownDate = (leftTime) => {
-	console.log('left time', leftTime)
+	console.log('left time', leftTime);
 
 	return (
 		<CountDown

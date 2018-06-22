@@ -130,7 +130,7 @@ class MoviesList extends Component {
 					<RefreshControl
 						refreshing={this.state.isRefreshing}
 						onRefresh={this._onRefresh}
-						colors={['#EA0000']}
+						colors={['#f4f6d8']}
 						tintColor="white"
 						title="loading..."
 						titleColor="white"

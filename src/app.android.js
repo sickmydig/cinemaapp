@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line
-import {Provider} from 'react-redux';
-import {Navigation} from 'react-native-navigation';
+import { Provider } from 'react-redux';
+import { Navigation } from 'react-native-navigation';
 
-import {registerScreens} from './screens';
+import { registerScreens } from './screens';
 import configureStore from './store/configureStore';
 import I18n from './i18n';
 
@@ -17,9 +17,9 @@ const navigatorStyle = {
 	navBarBackgroundColor: '#0a0a0a',
 	navBarTextColor: 'white',
 	navBarButtonColor: 'white',
-	tabBarButtonColor: 'red',
-	tabBarSelectedButtonColor: 'orange',
-	tabBarBackgroundColor: 'white',
+	tabBarButtonColor: 'grey',
+	tabBarSelectedButtonColor: 'white',
+	tabBarBackgroundColor: 'black',
 	topBarElevationShadowEnabled: false,
 	navBarHideOnScroll: true,
 	tabBarHidden: false,
@@ -50,19 +50,20 @@ const LoadScreen = {
 
 Navigation.startTabBasedApp(
 {
-
 	tabs: [
 		{
 			screen: 'movieapp.MoviesList',
 			title: 'on the Theathe',
-			icon: require('./modules/img/archery.png'),
+			label: 'On The Thearthe',
+			icon: require('./modules/img/film.png'),
 			navigatorStyle
 		},
 		{
 			screen: 'movieapp.Movies',
 			// screen: 'movieapp.Countdown',
 			title: 'hot movies',
-			icon: require('./modules/img/dumbbell.png'),
+			label: 'Hot movies',
+			icon: require('./modules/img/film-clap-board.png'),
 			navigatorStyle,
 			leftButtons: [
 				{
@@ -71,9 +72,9 @@ Navigation.startTabBasedApp(
 			]
 		}
 	],
-	drawer: {
-		left: {
-			screen: 'movieapp.Drawer'
+		drawer: {
+			left: {
+				screen: 'movieapp.Drawer'
+			}
 		}
-	}
 });

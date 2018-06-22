@@ -25,7 +25,6 @@ import Trailers from './tabs/Trailers';
 import styles from './styles/Movie';
 import { TMDB_IMG_URL, YOUTUBE_API_KEY, YOUTUBE_URL } from '../../constants/api';
 import CountDownTimer from './util/CountdownTimer';
-import CountDownDate from './CountDownDate';
 
 class Movie extends Component {
 	constructor(props) {
@@ -156,7 +155,6 @@ class Movie extends Component {
 		const { details } = this.props;
 		const info = details;
 		// '2018-09-08'
-		const upcoming = (Date.parse(new Date(info.release_date)) - Date.parse(new Date())) / 1000;
 		let height;
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
 		if (this.state.tab === 1) height = this.state.castsTabHeight;
@@ -219,7 +217,6 @@ class Movie extends Component {
 									<Text style={styles.cardStarRatings}>8.9</Text>
 								</View>
 								<Text style={styles.cardRunningHours} />
-								{upcoming > 0 ? <CountDownDate leftTime={upcoming} /> : <Text></Text> }
 							</View>
 						</View>
 					</View>

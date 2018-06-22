@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 import { TMDB_IMG_URL } from '../../../constants/api';
 import styles from './styles/CardThree';
+import CountDownDate from '../CountDownDate';
 
 const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 
@@ -22,6 +23,7 @@ class CardThree extends Component {
 
 	render() {
 		const { info, viewMovie } = this.props;
+		const upcoming = (Date.parse(new Date(info.release_date)) - Date.parse(new Date())) / 1000;
 		return (
 			<View style={styles.cardContainer}>
 				<TouchableOpacity activeOpacity={0.9} onPress={viewMovie.bind(this, info.id)}>
@@ -33,6 +35,7 @@ class CardThree extends Component {
 								numberOfLines={3}>
 								{info.original_title}
 							</Text>
+							{upcoming > 0 ? <CountDownDate leftTime={upcoming} /> : <Text></Text> }
 							<View style={styles.cardGenre}>
 								<Text style={styles.cardGenreItem}>{info.release_date.substring(0, 4)}</Text>
 							</View>

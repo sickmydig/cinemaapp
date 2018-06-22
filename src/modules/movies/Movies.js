@@ -144,7 +144,7 @@ class Movies extends Component {
 				}>
 				<Swiper
 					autoplay
-					autoplayTimeout={4}
+					autoplayTimeout={5}
 					showsPagination={false}
 					height={248}>
 					{nowPlayingMovies.results.map(info => (
@@ -158,7 +158,7 @@ class Movies extends Component {
 							<Text
 								style={styles.listHeadingRight}
 								onPress={this._viewMoviesList.bind(this, 'popular', 'Popular')}>
-								Xem tất cả
+								Popular
 							</Text>
 						</TouchableOpacity>
 					</View>
@@ -196,8 +196,7 @@ class Movies extends Component {
 							<View style={styles.browseListItem}>
 								{iconTop}
 								<Text style={styles.browseListItemText} onPress={this._viewMoviesList.bind(this, 'top_rated', 'Top Rated')}>
-									{/*Top Rated/Tiêu biểu*/}
-									Tiêu biểu
+									Top Rated/Tiêu biểu
 								</Text>
 							</View>
 						</TouchableOpacity>

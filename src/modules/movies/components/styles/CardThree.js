@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 16
 	},
 	card: {
-		backgroundColor: 'white',
+		backgroundColor: 'black',
 		borderRadius: 3,
 		minHeight: 148,
 		flexDirection: 'row',
@@ -18,14 +18,14 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	cardImage: {
-		height: 163,
-		width: 120,
+		height: 153,
+		width: 130,
 		borderTopLeftRadius: 3,
 		borderBottomLeftRadius: 3
 	},
 	cardTitle: {
-		color: 'black',
-		fontSize: 13,
+		color: 'white',
+		fontSize: 15,
 		fontWeight: '500',
 		paddingTop: 10
 	},
@@ -33,12 +33,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	cardGenreItem: {
+		color: 'white',
 		fontSize: 11,
 		marginRight: 5
 	},
 	cardDescription: {
-		color: '#636363',
-		fontSize: 13,
+		color: 'white',
+		fontSize: 14,
 		marginTop: 5
 	},
 	cardNumbers: {
@@ -50,11 +51,13 @@ const styles = StyleSheet.create({
 	},
 	cardStarRatings: {
 		marginLeft: 5,
-		fontSize: 12
+		fontSize: 12,
+		color: 'white'
 	},
 	cardRunningHours: {
 		marginLeft: 5,
-		fontSize: 12
+		fontSize: 12,
+		color: 'white'
 	}
 });
 

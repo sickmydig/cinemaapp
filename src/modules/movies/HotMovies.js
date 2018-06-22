@@ -1,4 +1,3 @@
-import Timeline from 'react-native-timeline-listview';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 
@@ -96,7 +95,7 @@ console.log('props at render ', this.props.favorites.results);
 					{pages}
 					{I18n.t('usGallons')}
 				</Text>
-				{/*{myButton}*/}
+				{/* {myButton}*/}
 				{/*<GridView*/}
 					{/*items={this.state.favorites.results}*/}
 					{/*itemsPerRow={3}*/}
@@ -150,8 +149,8 @@ function mapDispatchToProps(dispatch) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		padding: 20,
-		paddingTop:65,
+		padding: 10,
+		paddingTop: 25,
 		backgroundColor: 'black'
 	}
 });
