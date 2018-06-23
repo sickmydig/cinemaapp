@@ -23,7 +23,7 @@ import Info from './tabs/Info';
 import ProgressBar from '../_global/ProgressBar';
 import Trailers from './tabs/Trailers';
 import styles from './styles/Movie';
-import { TMDB_IMG_URL, YOUTUBE_API_KEY, YOUTUBE_URL } from '../../constants/api';
+import { TMDB_IMG_URL, TMDB_API_KEY, TMDB_SESSION_ID, TMDB_URL, YOUTUBE_API_KEY, YOUTUBE_URL } from '../../constants/api';
 import CountDownTimer from './util/CountdownTimer';
 
 class Movie extends Component {
@@ -39,7 +39,9 @@ class Movie extends Component {
 			showSimilarMovies: true,
 			trailersTabHeight: null,
 			tab: 0,
-			youtubeVideos: []
+			youtubeVideos: [],
+			favoriteStatus: false,
+			favoriteId: 0
 		};
 
 		this._getTabHeight = this._getTabHeight.bind(this);
@@ -58,6 +60,10 @@ class Movie extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.details) this.setState({ isLoading: false });
+	}
+
+	componentDidMount() {
+		console.log('didMount', this.state.favoriteStatus);
 	}
 
 	_retrieveDetails(isRefreshed) {
@@ -110,6 +116,10 @@ class Movie extends Component {
 	}
 
 	_retrieveYoutubeDetails() {
+		const details = this.props.details;
+		if (typeof (details) === 'undefined') {
+			return '';
+		}
 		this.props.details.videos.results.map(item => {
 			const request = axios.get(`${YOUTUBE_URL}/?id=${item.key}&key=${YOUTUBE_API_KEY}&part=snippet`)
 								.then(res => {
@@ -132,6 +142,17 @@ class Movie extends Component {
 		});
 	}
 
+	showFavorite(movieId) {
+		this.props.navigator.showModal({
+			screen: 'movieapp.Favorites', // unique ID registered with Navigation.registerScreen
+			style: {
+				backgroundBlur: 'dark', // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
+				backgroundColor: '#ff000080', // tint color for the background, you can specify alpha here (optional)
+				tapBackgroundToDismiss: true // dismisses LightBox on background taps (optional)
+			}
+		});
+	}
+
 	_openYoutube(youtubeUrl) {
 		Linking.canOpenURL(youtubeUrl).then(supported => {
 			if (supported) {
@@ -140,6 +161,27 @@ class Movie extends Component {
 				ToastAndroid.show(`RN Don't know how to handle this url ${youtubeUrl}`, ToastAndroid.SHORT);
 			}
 		});
+	}
+
+	sendFavoriteMovie(mediaId) {
+		axios.defaults.headers.post['Content-Type'] = 'application/json';
+		const request =
+			axios.post(`${TMDB_URL}/account/sickmydig/favorite?api_key=${TMDB_API_KEY}&session_id=${TMDB_SESSION_ID}`,
+				{
+					"media_type": "movie",
+					"media_id": mediaId,
+					"favorite": true
+				})
+			.then(res => {
+				const data = res.data;
+				console.log('default', this.state.favoriteStatus);
+				// this.setState({ favoriteStatus: true });
+				console.log('response for favorite', data);
+				this.showFavorite(data.id);
+			})
+			.catch(error => {
+				console.log(error); //eslint-disable-line
+			});
 	}
 
 	_onNavigatorEvent(event) {
@@ -196,12 +238,11 @@ class Movie extends Component {
 							))
 						}
 					</Swiper>
+
 					<View style={styles.cardContainer}>
 
 						<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
-
 						<View style={styles.cardDetails}>
-
 							<Text style={styles.cardTitle}>{info.original_title}</Text>
 							<Text style={styles.cardTagline}>{info.tagline}</Text>
 							<View style={styles.cardGenre}>
@@ -210,6 +251,13 @@ class Movie extends Component {
 										<Text key={item.id} style={styles.cardGenreItem}>{item.name}</Text>
 									))
 								}
+							</View>
+							<View>
+								<Text
+									onPress={this.sendFavoriteMovie(info.id)}>
+									{'Add favorite'}
+								</Text>
+								{iconStar}
 							</View>
 							<View style={styles.cardNumbers}>
 								<View style={styles.cardStar}>
