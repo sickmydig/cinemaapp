@@ -6,6 +6,7 @@ import {
 	ScrollView,
 	Text,
 	ToastAndroid,
+	TouchableOpacity,
 	View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -15,6 +16,7 @@ import Swiper from 'react-native-swiper';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import * as moviesActions from './movies.actions';
 import Casts from './tabs/Casts';
@@ -23,8 +25,10 @@ import Info from './tabs/Info';
 import ProgressBar from '../_global/ProgressBar';
 import Trailers from './tabs/Trailers';
 import styles from './styles/Movie';
-import { TMDB_IMG_URL, TMDB_API_KEY, TMDB_SESSION_ID, TMDB_URL, YOUTUBE_API_KEY, YOUTUBE_URL } from '../../constants/api';
-import CountDownTimer from './util/CountdownTimer';
+import {
+	TMDB_IMG_URL, TMDB_API_KEY, TMDB_SESSION_ID,
+	TMDB_URL, YOUTUBE_API_KEY, YOUTUBE_URL
+} from '../../constants/api';
 
 class Movie extends Component {
 	constructor(props) {
@@ -62,15 +66,31 @@ class Movie extends Component {
 		if (nextProps.details) this.setState({ isLoading: false });
 	}
 
-	componentDidMount() {
-		console.log('didMount', this.state.favoriteStatus);
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	console.log('--> should component update', nextProps.details !== this.props.details);
+	// 	return (nextProps.details !== this.props.details);
+	// }
+
+	componentWillUpdate() {
 	}
 
 	_retrieveDetails(isRefreshed) {
-		this.props.actions.retrieveMovieDetails(this.props.movieId)
-			.then(() => {
-				this._retrieveYoutubeDetails();
-			});
+		this.props.actions.retrieveMovieDetails(this.props.movieId).then(() => {
+				// this._retrieveYoutubeDetails();
+		});
+
+		this.props.actions.retrieveFavorites().then(() => {
+			const fav = this.props.favorites;
+			if (fav) {
+				fav.results.map(item => {
+					// Check if the movie is favorite, set status for the movie
+					if (item.id === this.props.details.id) {
+						this.setState({ favoriteStatus: true });
+					}
+				});
+			}
+		});
+
 		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
@@ -141,18 +161,6 @@ class Movie extends Component {
 			}
 		});
 	}
-
-	showFavorite(movieId) {
-		this.props.navigator.showModal({
-			screen: 'movieapp.Favorites', // unique ID registered with Navigation.registerScreen
-			style: {
-				backgroundBlur: 'dark', // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
-				backgroundColor: '#ff000080', // tint color for the background, you can specify alpha here (optional)
-				tapBackgroundToDismiss: true // dismisses LightBox on background taps (optional)
-			}
-		});
-	}
-
 	_openYoutube(youtubeUrl) {
 		Linking.canOpenURL(youtubeUrl).then(supported => {
 			if (supported) {
@@ -163,21 +171,25 @@ class Movie extends Component {
 		});
 	}
 
-	sendFavoriteMovie(mediaId) {
+	_sendFavoriteMovie(mediaId) {
 		axios.defaults.headers.post['Content-Type'] = 'application/json';
 		const request =
 			axios.post(`${TMDB_URL}/account/sickmydig/favorite?api_key=${TMDB_API_KEY}&session_id=${TMDB_SESSION_ID}`,
 				{
-					"media_type": "movie",
-					"media_id": mediaId,
-					"favorite": true
+					media_type: "movie",
+					media_id: mediaId,
+					favorite: !this.state.favoriteStatus
 				})
 			.then(res => {
 				const data = res.data;
-				console.log('default', this.state.favoriteStatus);
-				// this.setState({ favoriteStatus: true });
-				console.log('response for favorite', data);
-				this.showFavorite(data.id);
+
+				if (data.status_code <= 13) {
+					this.setState({ favoriteStatus: !this.state.favoriteStatus });
+					console.log('---> hehe show my state', this.state.favoriteStatus);
+				}
+				if (data.status_code === 404) {
+					console.log('Server error');
+				}
 			})
 			.catch(error => {
 				console.log(error); //eslint-disable-line
@@ -193,15 +205,17 @@ class Movie extends Component {
 	}
 
 	render() {
-		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
+		console.log('<<<<<<<<<<<<<<<<<<< RENDER PHASE >>>>>>>>>>>>>>>>>>>>');
+		console.log('---> state of favorite at render', this.state.favoriteStatus);
 		const { details } = this.props;
 		const info = details;
+		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		// '2018-09-08'
 		let height;
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
 		if (this.state.tab === 1) height = this.state.castsTabHeight;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;
-
+		const favoriteColorSign = (this.state.favoriteStatus) ? '#d78c45' : '#c0c9d7';
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView
@@ -253,11 +267,9 @@ class Movie extends Component {
 								}
 							</View>
 							<View>
-								<Text
-									onPress={this.sendFavoriteMovie(info.id)}>
-									{'Add favorite'}
-								</Text>
-								{iconStar}
+								<TouchableOpacity activeOpacity={0.9} onPress={this._sendFavoriteMovie.bind(this, info.id)}>
+									<Icon name="md-bookmark" size={35} color={favoriteColorSign} />
+								</TouchableOpacity>
 							</View>
 							<View style={styles.cardNumbers}>
 								<View style={styles.cardStar}>
@@ -302,13 +314,15 @@ Movie.propTypes = {
 	actions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
-	movieId: PropTypes.number.isRequired
+	movieId: PropTypes.number.isRequired,
+	favorites: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
 		details: state.movies.details,
-		similarMovies: state.movies.similarMovies
+		//similarMovies: state.movies.similarMovies,
+		favorites: state.movies.favorites
 	};
 }
 

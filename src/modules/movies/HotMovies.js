@@ -41,6 +41,7 @@ class HotMovies extends Component {
 	_retrieveFavorites() {
 		this.props.actions.retrieveFavorites()
 			.then(() => {
+				console.log('favorite result', this.props.favorites.results);
 				const ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2 });
 				const dataSource = ds.cloneWithRows(this.props.favorites.results);
 
@@ -81,13 +82,8 @@ class HotMovies extends Component {
 	}
 
 	render() {
-		const myButton = (
-			<Icon.Button name="heart" backgroundColor="#3b5998" >
-				Login with Facebook
-			</Icon.Button>
-		);
 		const pages = this.state.page;
-console.log('props at render ', this.props.favorites.results);
+		console.log('props at render ', this.props.favorites.results);
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<View style={styles.container}>
@@ -95,7 +91,7 @@ console.log('props at render ', this.props.favorites.results);
 					{pages}
 					{I18n.t('usGallons')}
 				</Text>
-				{/* {myButton}*/}
+
 				{/*<GridView*/}
 					{/*items={this.state.favorites.results}*/}
 					{/*itemsPerRow={3}*/}
@@ -150,7 +146,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 10,
-		paddingTop: 25,
+		paddingTop: 20,
 		backgroundColor: 'black'
 	}
 });

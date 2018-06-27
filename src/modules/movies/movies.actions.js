@@ -25,7 +25,7 @@ export function retrieveFavorites(res) {
 			.catch(error => {
 				console.log(error); //eslint-disable-line
 			});
-	}
+	};
 }
 // get list of favorite movies
 export function retrieveSuccessFavorite(res) {

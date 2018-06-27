@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 	},
 	imageBackdrop: {
 		// flex: 1,
-		height: 248,
+		height: 228,
 		backgroundColor: 'black'
 	},
 	cardContainer: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	cardImage: {
-		height: 184,
+		height: 174,
 		width: 135,
 		borderRadius: 3
 	},
@@ -94,6 +94,12 @@ const styles = StyleSheet.create({
 	cardRunningHours: {
 		marginLeft: 5,
 		fontSize: 12
+	},
+	icon: {
+		padding: 10,
+		borderRadius: 5,
+		backgroundColor: '#272822',
+		color: 'white'
 	}
 });
 
