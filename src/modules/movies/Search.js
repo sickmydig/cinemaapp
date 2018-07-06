@@ -13,7 +13,12 @@ import * as moviesActions from './movies.actions';
 import CardThree from './components/CardThree';
 import styles from './styles/Search';
 import { iconsMap } from '../../utils/AppIcons';
+import WithLoading from './WithLoading';
+import CardCategory from './components/CardCategory';
+import CardMixed from './components/CardMixed';
 
+const CategoryWithLoading = WithLoading(CardCategory);
+const CategoryMixed = WithLoading(CardMixed);
 class Search extends Component {
 	constructor(props) {
 		super(props);
@@ -24,7 +29,13 @@ class Search extends Component {
 			searchResults: {
 				results: []
 			},
-			query: null
+			query: null,
+			repos: {
+				movie_category: {
+					title: 'category',
+					type: 'Thriller'
+				}
+			}
 		};
 
 		this._viewMovie = this._viewMovie.bind(this);
@@ -144,8 +155,9 @@ class Search extends Component {
 					</View>
 				</View>
 				{ !this.state.isLoading && this._renderListView() }
+				<CategoryWithLoading isLoading={false} repos={this.state.repos} />
+				<CategoryMixed isLoading={false} repos={this.state.repos} />
 			</View>
-
 		);
 	}
 }

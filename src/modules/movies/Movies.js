@@ -44,10 +44,12 @@ class Movies extends Component {
 			this.setState({ isLoading: false });
 		}
 	}
-
+	componentDidMount() {
+		this.props.actions.retrieveFavorites();
+		this.props.actions.retrievePopularMovies();
+	}
 	_retrieveMovies(isRefreshed) {
 		this.props.actions.retrieveNowPlayingMovies();
-		this.props.actions.retrievePopularMovies();
 		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
@@ -221,13 +223,15 @@ Movies.propTypes = {
 	actions: PropTypes.object.isRequired,
 	nowPlayingMovies: PropTypes.object.isRequired,
 	popularMovies: PropTypes.object.isRequired,
-	navigator: PropTypes.object
+	navigator: PropTypes.object,
+	favorites: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
 		nowPlayingMovies: state.movies.nowPlayingMovies,
-		popularMovies: state.movies.popularMovies
+		popularMovies: state.movies.popularMovies,
+		favorites: state.movies.favorites
 	};
 }
 

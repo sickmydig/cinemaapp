@@ -44,8 +44,8 @@ class Movie extends Component {
 			trailersTabHeight: null,
 			tab: 0,
 			youtubeVideos: [],
-			favoriteStatus: false,
-			favoriteId: 0
+			isFavorite: false,
+			favoriteSize: 0
 		};
 
 		this._getTabHeight = this._getTabHeight.bind(this);
@@ -56,42 +56,58 @@ class Movie extends Component {
 		this._viewMovie = this._viewMovie.bind(this);
 		this._openYoutube = this._openYoutube.bind(this);
 		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+		this._doToastNotification = this._doToastNotification.bind(this);
+		this._checkFavoriteMovie = this._checkFavoriteMovie.bind(this);
 	}
 
 	componentWillMount() {
 		this._retrieveDetails();
+		this._checkFavoriteMovie();
 	}
 
 	componentWillReceiveProps(nextProps) {
+		if (typeof (nextProps) !== 'undefined' && nextProps.details) this._checkFavoriteMovie(nextProps);
 		if (nextProps.details) this.setState({ isLoading: false });
 	}
 
-	// shouldComponentUpdate(nextProps, nextState) {
-	// 	console.log('--> should component update', nextProps.details !== this.props.details);
-	// 	return (nextProps.details !== this.props.details);
+	// componentDidMount() {
+	// 		console.log('should fetch API for updating', this.state.isFavorite);
+	// 		this.props.actions.retrieveFavorites().then(() => {
+	// 			console.log('response here ', this.props.favorites.results);
+	// 		});
+	//
 	// }
 
-	componentWillUpdate() {
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	return (this.props.details !== nextProps.details);
+	// }
+
+	// componentWillUpdate() {
+	// }
 
 	_retrieveDetails(isRefreshed) {
 		this.props.actions.retrieveMovieDetails(this.props.movieId).then(() => {
 				// this._retrieveYoutubeDetails();
 		});
+		if (isRefreshed && this.setState({ isRefreshing: false }));
+	}
 
-		this.props.actions.retrieveFavorites().then(() => {
-			const fav = this.props.favorites;
+	_checkFavoriteMovie(nextPropsParam) {
+		const fav = this.props.favorites;
+		console.log('changed favorite size', fav.results.length);
+		if (nextPropsParam) {
 			if (fav) {
-				fav.results.map(item => {
+				const currentProps = (nextPropsParam.details !== this.props.details) ? nextPropsParam.details : this.props.details;
+				const currentFavorites = (nextPropsParam.favorites.total_results !== this.props.favorites.total_results) ? nextPropsParam.favorites : this.props.favorites;
+				currentFavorites.results.map(item => {
+					console.log('at item :', item.id, currentProps.id);
 					// Check if the movie is favorite, set status for the movie
-					if (item.id === this.props.details.id) {
-						this.setState({ favoriteStatus: true });
+					if (item.id === currentProps.id) {
+						this.setState({ isFavorite: true });
 					}
 				});
 			}
-		});
-
-		if (isRefreshed && this.setState({ isRefreshing: false }));
+		}
 	}
 
 	_retrieveSimilarMovies() {
@@ -178,14 +194,15 @@ class Movie extends Component {
 				{
 					media_type: "movie",
 					media_id: mediaId,
-					favorite: !this.state.favoriteStatus
+					favorite: !this.state.isFavorite
 				})
 			.then(res => {
 				const data = res.data;
 
 				if (data.status_code <= 13) {
-					this.setState({ favoriteStatus: !this.state.favoriteStatus });
-					console.log('---> hehe show my state', this.state.favoriteStatus);
+					this.props.actions.retrieveFavorites();
+					this.setState({ isFavorite: !this.state.isFavorite });
+					this._doToastNotification(this.state.isFavorite);
 				}
 				if (data.status_code === 404) {
 					console.log('Server error');
@@ -204,9 +221,14 @@ class Movie extends Component {
 		}
 	}
 
+	_doToastNotification(isFavorited) {
+		if (isFavorited) ToastAndroid.show('favorite movie', ToastAndroid.SHORT);
+	}
+
 	render() {
-		console.log('<<<<<<<<<<<<<<<<<<< RENDER PHASE >>>>>>>>>>>>>>>>>>>>');
-		console.log('---> state of favorite at render', this.state.favoriteStatus);
+		// console.log('<<<<<<<<<<<<<<<<<<< RENDER PHASE >>>>>>>>>>>>>>>>>>>>');
+
+		console.log('>>>>>>>>>>>>>>>>>>>>>> state of favorite at render', this.state.isFavorite);
 		const { details } = this.props;
 		const info = details;
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
@@ -215,7 +237,7 @@ class Movie extends Component {
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
 		if (this.state.tab === 1) height = this.state.castsTabHeight;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;
-		const favoriteColorSign = (this.state.favoriteStatus) ? '#d78c45' : '#c0c9d7';
+		const favoriteColorSign = (this.state.isFavorite) ? '#d78c45' : '#c0c9d7';
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<ScrollView

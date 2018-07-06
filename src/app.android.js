@@ -63,7 +63,7 @@ Navigation.startTabBasedApp(
 			// screen: 'movieapp.Countdown',
 			title: 'hot movies',
 			label: 'Hot movies',
-			icon: require('./modules/img/film-clap-board.png'),
+			icon: require('./modules/img/filmclapboard.png'),
 			navigatorStyle,
 			leftButtons: [
 				{
