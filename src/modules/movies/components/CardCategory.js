@@ -18,11 +18,9 @@ const CardCategory = props => {
 		<View>
 			<Image source={{ uri: `https://image.tmdb.org/t/p/w150_and_h225_bestv2/tGGJOuLHX7UDlTz57sjfhW1qreP.jpg` }} style={cardstyles.imageBackdrop} />
 			<View style={cardstyles.container}>
-				{/*<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />*/}
-					<Text style={cardstyles.textGrid} numberOfLines={1}>
-						{repos.movie_category.title}
-					</Text>
-
+				<Text style={cardstyles.category_text} numberOfLines={2}>
+					{repos.movie_category.title}
+				</Text>
 			</View>
 		</View>
 	);
@@ -40,6 +38,7 @@ const cardstyles = StyleSheet.create({
 		paddingTop: 20,
 		backgroundColor: 'black'
 	},
+	category_text: { color: 'white' },
 	imageBackdrop: {
 		width: 100,
 		height: 90

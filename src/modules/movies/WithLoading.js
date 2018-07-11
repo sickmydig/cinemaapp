@@ -18,10 +18,10 @@ export default function WithLoading(Component) {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 10,
+		flex: 1,
 		paddingLeft: 10,
 		paddingTop: 20,
-		backgroundColor: 'black'
+		backgroundColor: 'grey'
 	},
 	textGrid: {
 		color: 'white',

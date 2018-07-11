@@ -140,6 +140,7 @@ class Search extends Component {
 	}
 
 	render() {
+		console.log('....... RENDER SEARCH........');
 		return (
 			<View style={styles.container}>
 				<View style={styles.searchbox}>
@@ -155,7 +156,7 @@ class Search extends Component {
 					</View>
 				</View>
 				{ !this.state.isLoading && this._renderListView() }
-				<CategoryWithLoading isLoading={false} repos={this.state.repos} />
+				<CategoryWithLoading isLoading={false} repos={this.state.repos} message={'this is more parameter i passed over'} />
 				<CategoryMixed isLoading={false} repos={this.state.repos} />
 			</View>
 		);
