@@ -39,15 +39,19 @@ class Movies extends Component {
 		this._retrieveMovies();
 	}
 
+
+	componentDidMount() {
+		this.props.actions.retrieveFavorites();
+		this.props.actions.retrievePopularMovies();
+		this.props.actions.retrieveMoviesGenres();
+	}
+
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.nowPlayingMovies && nextProps.popularMovies) {
 			this.setState({ isLoading: false });
 		}
 	}
-	componentDidMount() {
-		this.props.actions.retrieveFavorites();
-		this.props.actions.retrievePopularMovies();
-	}
+
 	_retrieveMovies(isRefreshed) {
 		this.props.actions.retrieveNowPlayingMovies();
 		if (isRefreshed && this.setState({ isRefreshing: false }));

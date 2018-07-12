@@ -66,6 +66,7 @@ class Drawer extends Component {
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 		const favorites = (<IconEx name="volume-down" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
+		const { totalFavorites } = this.props;
 		return (
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
 				<View style={styles.container}>
@@ -98,6 +99,16 @@ class Drawer extends Component {
 								<Text style={styles.drawerListItemText} >
 									Favorite
 								</Text>
+								<Text style={styles.drawerListItemText} >
+									{totalFavorites}
+								</Text>
+							</View>
+						</TouchableOpacity>
+						<TouchableOpacity onPress={this._goToFavorites}>
+							<View style={styles.drawerListItem}>
+								<Text style={styles.drawerListItemText} >
+									About
+								</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
@@ -112,12 +123,18 @@ class Drawer extends Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		list: state.movies.favorites
+		list: state.movies.favorites,
+		totalFavorites: state.movies.favorites.total_results
 	};
 }
 
+Drawer.defaultProps = {
+	totalFavorites: 0
+};
+
 Drawer.propTypes = {
 	navigator: PropTypes.object,
+	totalFavorites: PropTypes.number.isRequired
 	// list: PropTypes.object.required
 };
 

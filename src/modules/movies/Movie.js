@@ -87,7 +87,7 @@ class Movie extends Component {
 
 	_retrieveDetails(isRefreshed) {
 		this.props.actions.retrieveMovieDetails(this.props.movieId).then(() => {
-				// this._retrieveYoutubeDetails();
+				this._retrieveYoutubeDetails();
 		});
 		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
@@ -147,7 +147,7 @@ class Movie extends Component {
 	}
 
 	_getTabHeight(tabName, height) {
-		if (tabName === 'casts') this.setState({ castsTabHeight: height });
+		if (tabName === 'casts') this.setState({ castsTabHeight: height + 50 });
 		if (tabName === 'trailers') this.setState({ trailersTabHeight: height });
 	}
 
@@ -179,6 +179,7 @@ class Movie extends Component {
 	}
 	_openYoutube(youtubeUrl) {
 		Linking.canOpenURL(youtubeUrl).then(supported => {
+			console.log(supported);
 			if (supported) {
 				Linking.openURL(youtubeUrl);
 			} else {
@@ -228,7 +229,7 @@ class Movie extends Component {
 	render() {
 		// console.log('<<<<<<<<<<<<<<<<<<< RENDER PHASE >>>>>>>>>>>>>>>>>>>>');
 
-		console.log('>>>>>>>>>>>>>>>>>>>>>> state of favorite at render', this.state.isFavorite);
+		console.log('>>>>>>>>>>>>>>>>>>>>>> Movie render', this.state.isFavorite);
 		const { details } = this.props;
 		const info = details;
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;

@@ -12,17 +12,23 @@ const styles = StyleSheet.create({
 				height: 35
 			},
 			android: {
-				height: 48
+				height: 48,
+				borderBottomWidth: 1,
+				borderBottomColor: 'white',
+				backgroundColor: 'black',
+				marginLeft: 20,
+				color: 'white'
 			}
 		})
 	},
 	searchboxBorder: {
 		borderRadius: 3,
-		backgroundColor: 'white',
+		backgroundColor: 'black',
 		paddingHorizontal: 3
 	},
 	searchbox: {
-		backgroundColor: '#191919',
+		// backgroundColor: '#191919',
+		backgroundColor: 'black',
 		paddingHorizontal: 16,
 		paddingVertical: 8,
 		marginBottom: 16

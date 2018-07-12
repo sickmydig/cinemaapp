@@ -3,7 +3,7 @@ import I18n from '../i18n';
 export default {
 	movies: {
 		details: {},
-		genres: [],
+		genres: {},
 		list: {},
 		nowPlayingMovies: {},
 		popularMovies: {},

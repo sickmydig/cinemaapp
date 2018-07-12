@@ -9,39 +9,33 @@ import SquareGrid from "react-native-square-grid";
 import styles from './styles/CardOne';
 
 const iconStar = (<Icon name="md-star" size={16} color="#F5B642" />);
-const NUMBERS = [
-	"one",
-	"two",
-	"three",
-	"four",
-	"five",
-	"six"
-];
 
 const CardMixed = props => {
-	const { repos } = props;
-	if (!repos) return null;
+	const genresArr = props.genres.genres;
+	if (genresArr.length === 0) return null;
+	const modRows = genresArr.length % 3;
+	const showRows = modRows > 0 ? (genresArr.length / 3) + 1 : genresArr.length / 3;
 	return (
-		<SquareGrid rows={2} columns={3} items={NUMBERS} renderItem={renderItem} />
+		<SquareGrid rows={showRows} columns={3} items={genresArr} renderItem={renderItem} />
 	);
 };
 
 const renderItem = item => {
 	return (
-		<View style={mixedstyles.item}>
-			<View style={mixedstyles.content}>
-				<Text style={mixedstyles.text}>{item}{' grid item '}</Text>
+		<View style={mixedStyles.item}>
+			<View style={mixedStyles.content}>
+				<Text style={mixedStyles.text}>{item.name}</Text>
 			</View>
 		</View>
 	);
 };
 
 // CardMixed.propTypes = {
-// 	props: PropTypes.object.isRequired,
+// 	props: PropTypes.array.isRequired,
 // 	viewCategory: PropTypes.func.isRequired
 // };
 
-const mixedstyles = StyleSheet.create({
+const mixedStyles = StyleSheet.create({
 
 	item: {
 		flex: 1,
@@ -57,7 +51,7 @@ const mixedstyles = StyleSheet.create({
 	},
 	text: {
 		color: "white",
-		fontSize: 32
+		fontSize: 13
 	}
 });
 

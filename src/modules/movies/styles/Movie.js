@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 		right: 0,
-		height: 248,
+		height: 228,
 		position: 'absolute'
 	},
 	imageBackdrop: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	cardImage: {
-		height: 174,
+		height: 184,
 		width: 135,
 		borderRadius: 3
 	},

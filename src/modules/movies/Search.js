@@ -30,17 +30,24 @@ class Search extends Component {
 				results: []
 			},
 			query: null,
-			repos: {
-				movie_category: {
-					title: 'category',
-					type: 'Thriller'
-				}
-			}
+			// repos: {
+			// 	movie_category: {
+			// 		title: 'category',
+			// 		type: 'Thriller'
+			// 	}
+			// }
+			// genres: {
+			// 	results: []
+			// }
 		};
 
 		this._viewMovie = this._viewMovie.bind(this);
 		this._handleTextInput = this._handleTextInput.bind(this);
 		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+	}
+
+	componentDidMount() {
+
 	}
 
 	_handleTextInput(event) {
@@ -156,8 +163,8 @@ class Search extends Component {
 					</View>
 				</View>
 				{ !this.state.isLoading && this._renderListView() }
-				<CategoryWithLoading isLoading={false} repos={this.state.repos} message={'this is more parameter i passed over'} />
-				<CategoryMixed isLoading={false} repos={this.state.repos} />
+				{/*<CategoryWithLoading isLoading={false} genres={this.state.genres} message={'this is more parameter i passed over'} />*/}
+				<CategoryMixed isLoading={false} genres={this.props.genres} />
 			</View>
 		);
 	}
@@ -166,7 +173,8 @@ class Search extends Component {
 Search.propTypes = {
 	actions: PropTypes.object.isRequired,
 	searchResults: PropTypes.object.isRequired,
-	navigator: PropTypes.object
+	navigator: PropTypes.object,
+	genres: PropTypes.object
 };
 
 Search.navigatorStyle = {
@@ -179,7 +187,8 @@ Search.navigatorStyle = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		searchResults: state.movies.searchResults
+		searchResults: state.movies.searchResults,
+		genres: state.movies.genres
 	};
 }
 
