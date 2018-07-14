@@ -146,3 +146,27 @@ export function retrieveMovieDetails(movieId) {
 		});
 	};
 }
+
+export function retrieveSimilarMoviesSuccess(res) {
+	return {
+		type: types.RETRIEVE_MOVIES_SIMILAR_SUCCESS,
+		similarPayload: res.data
+	};
+}
+
+export function retrieveSimilarMovies(movieId) {
+	// https://api.themoviedb.org/3/movie/351286/similar?api_key=503989c02d0aeef0d8f0acd6c505f052&language=en-US&page=1
+	return function (dispatch) {
+		return axios.get(`${TMDB_URL}/movie/${movieId}/similar?api_key=${TMDB_API_KEY}`)
+			.then(res => {
+				dispatch(retrieveSimilarMoviesSuccess(res));
+			})
+			.catch(error => {
+				console.log('Similar movie Details', error); //eslint-disable-line
+			});
+	};
+}
+
+// belongs_to_collection
+// https://api.themoviedb.org/3/collection/{collection_id}?api_key=<<api_key>>&language=en-US
+// 	https://api.themoviedb.org/3/collection/422834?api_key=503989c02d0aeef0d8f0acd6c505f052&language=en-US

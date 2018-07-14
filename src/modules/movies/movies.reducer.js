@@ -51,6 +51,11 @@ export default function (state = initialState.movies, action) {
 				...state,
 				searchResults: action.searchResults
 			};
+		case types.RETRIEVE_MOVIES_SIMILAR_SUCCESS:
+			return {
+				...state,
+				similar: action.similarPayload
+			};
 		default:
 			return state;
 	}

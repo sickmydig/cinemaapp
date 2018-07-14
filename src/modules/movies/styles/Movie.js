@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#EA0000'
 	},
 	tabBar: {
-		backgroundColor: '#131313'
+		backgroundColor: '#90903e'
 	},
 	contentContainer: {
 		flex: 1,
@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 		right: 0,
-		height: 228,
+		height: 248,
 		position: 'absolute'
 	},
 	imageBackdrop: {
 		// flex: 1,
-		height: 228,
+		height: 248,
 		backgroundColor: 'black'
 	},
 	cardContainer: {

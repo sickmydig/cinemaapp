@@ -58,6 +58,7 @@ class Movie extends Component {
 		this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
 		this._doToastNotification = this._doToastNotification.bind(this);
 		this._checkFavoriteMovie = this._checkFavoriteMovie.bind(this);
+		this._retrieveSimilarMovies = this._retrieveSimilarMovies.bind(this);
 	}
 
 	componentWillMount() {
@@ -65,19 +66,15 @@ class Movie extends Component {
 		this._checkFavoriteMovie();
 	}
 
+	componentDidMount() {
+		console.log('fetch the similar movies', this.state.isFavorite);
+		this._retrieveSimilarMovies();
+	}
+
 	componentWillReceiveProps(nextProps) {
 		if (typeof (nextProps) !== 'undefined' && nextProps.details) this._checkFavoriteMovie(nextProps);
 		if (nextProps.details) this.setState({ isLoading: false });
 	}
-
-	// componentDidMount() {
-	// 		console.log('should fetch API for updating', this.state.isFavorite);
-	// 		this.props.actions.retrieveFavorites().then(() => {
-	// 			console.log('response here ', this.props.favorites.results);
-	// 		});
-	//
-	// }
-
 	// shouldComponentUpdate(nextProps, nextState) {
 	// 	return (this.props.details !== nextProps.details);
 	// }
@@ -94,7 +91,6 @@ class Movie extends Component {
 
 	_checkFavoriteMovie(nextPropsParam) {
 		const fav = this.props.favorites;
-		console.log('changed favorite size', fav.results.length);
 		if (nextPropsParam) {
 			if (fav) {
 				const currentProps = (nextPropsParam.details !== this.props.details) ? nextPropsParam.details : this.props.details;
@@ -111,7 +107,7 @@ class Movie extends Component {
 	}
 
 	_retrieveSimilarMovies() {
-		this.props.actions.retrieveSimilarMovies(this.props.movieId, 1);
+		this.props.actions.retrieveSimilarMovies(this.props.movieId);
 	}
 
 	_onRefresh() {
@@ -147,7 +143,8 @@ class Movie extends Component {
 	}
 
 	_getTabHeight(tabName, height) {
-		if (tabName === 'casts') this.setState({ castsTabHeight: height + 50 });
+		console.log('tabHeight ', height);
+		if (tabName === 'casts') this.setState({ castsTabHeight: height });
 		if (tabName === 'trailers') this.setState({ trailersTabHeight: height });
 	}
 
@@ -229,15 +226,16 @@ class Movie extends Component {
 	render() {
 		// console.log('<<<<<<<<<<<<<<<<<<< RENDER PHASE >>>>>>>>>>>>>>>>>>>>');
 
-		console.log('>>>>>>>>>>>>>>>>>>>>>> Movie render', this.state.isFavorite);
+		console.log('>>>>>>>>>>>>>>>>>>>>>> Movie render');
 		const { details } = this.props;
 		const info = details;
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		// '2018-09-08'
 		let height;
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
-		if (this.state.tab === 1) height = this.state.castsTabHeight;
+		if (this.state.tab === 1) height = this.state.castsTabHeight - 700;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;
+		console.log('render withHeight ', height);
 		const favoriteColorSign = (this.state.isFavorite) ? '#d78c45' : '#c0c9d7';
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
@@ -338,13 +336,14 @@ Movie.propTypes = {
 	details: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
 	movieId: PropTypes.number.isRequired,
-	favorites: PropTypes.object.isRequired
+	favorites: PropTypes.object.isRequired,
+	similarMovies: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
 		details: state.movies.details,
-		//similarMovies: state.movies.similarMovies,
+		similarMovies: state.movies.similar,
 		favorites: state.movies.favorites
 	};
 }
