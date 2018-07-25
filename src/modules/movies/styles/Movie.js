@@ -14,8 +14,9 @@ const styles = StyleSheet.create({
 		backgroundColor: '#90903e'
 	},
 	contentContainer: {
+		position: 'relative',
 		flex: 1,
-		marginTop: 157
+		top: 30
 	},
 	progressBar: {
 		backgroundColor: '#0a0a0a',
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
 		left: 16,
 		flexDirection: 'row'
 	},
+
 	cardImage: {
 		height: 184,
 		width: 135,

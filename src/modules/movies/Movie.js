@@ -20,6 +20,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import * as moviesActions from './movies.actions';
 import Casts from './tabs/Casts';
+import CardCasts from './tabs/CardCasts';
 import DefaultTabBar from '../_global/scrollableTabView/DefaultTabBar';
 import Info from './tabs/Info';
 import ProgressBar from '../_global/ProgressBar';
@@ -232,8 +233,12 @@ class Movie extends Component {
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		// '2018-09-08'
 		let height;
+		const heightTest = {
+			height: 250,
+			justifyContent: 'bottom'
+		};
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
-		if (this.state.tab === 1) height = this.state.castsTabHeight - 700;
+		if (this.state.tab === 1) height = this.state.castsTabHeight;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;
 		console.log('render withHeight ', height);
 		const favoriteColorSign = (this.state.isFavorite) ? '#d78c45' : '#c0c9d7';
@@ -301,6 +306,13 @@ class Movie extends Component {
 							</View>
 						</View>
 					</View>
+					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
+						{
+							info.casts.cast.map((item, index) => (
+								<CardCasts key={index} info={item} />
+							))
+						}
+					</ScrollView>
 					<View style={styles.contentContainer}>
 						<ScrollableTabView
 							onChangeTab={this._onChangeTab}
@@ -312,7 +324,7 @@ class Movie extends Component {
 								/>
 							)}>
 							<Info tabLabel="INFO" info={info} />
-							<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />
+							{/*<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />*/}
 							<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
 						</ScrollableTabView>
 					</View>
