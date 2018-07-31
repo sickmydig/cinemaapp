@@ -102,6 +102,9 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		backgroundColor: '#272822',
 		color: 'white'
+	},
+	favoriteSign: {
+		zIndex: 1
 	}
 });
 

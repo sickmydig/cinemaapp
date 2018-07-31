@@ -13,6 +13,7 @@ import Swiper from 'react-native-swiper';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import FAB from 'react-native-fab'
 import * as moviesActions from './movies.actions';
 import CardOne from './components/CardOne';
 import CardTwo from './components/CardTwo';
@@ -171,7 +172,7 @@ class Movies extends Component {
 
 
 						{/* Rest of the app comes ABOVE the action button component !*/}
-						<ActionButton buttonColor="rgba(231,76,60,1)" >
+						<ActionButton buttonColor="rgba(231,76,60,1)" style={styles.FloatingButtonStyle}>
 							<ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
 								<Icon name="md-search" style={styles.actionButtonIcon} />
 							</ActionButton.Item>
@@ -182,6 +183,7 @@ class Movies extends Component {
 								<Icon name="md-done-all" style={styles.actionButtonIcon} />
 							</ActionButton.Item>
 						</ActionButton>
+
 					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
 						{popularMovies.results.map(info => (
 							<CardTwo key={info.id} info={info} viewMovie={this._viewMovie} />

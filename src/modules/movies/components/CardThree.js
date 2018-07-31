@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
-
+import LinearGradient from 'react-native-linear-gradient';
 import { TMDB_IMG_URL } from '../../../constants/api';
 import styles from './styles/CardThree';
 import CountDownDate from '../CountDownDate';
@@ -27,7 +27,9 @@ class CardThree extends Component {
 		return (
 			<View style={styles.cardContainer}>
 				<TouchableOpacity activeOpacity={0.9} onPress={viewMovie.bind(this, info.id)}>
+
 					<View style={styles.card}>
+						<LinearGradient colors={['rgba(0, 0, 0, 0.5)', 'rgba(0,0,0, 0.7)', 'rgba(0,0,0, 0.8)']} style={styles.linearGradient} />
 						<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
 						<View style={styles.cardDetails}>
 							<Text
@@ -46,7 +48,7 @@ class CardThree extends Component {
 								</View>
 								<Text style={styles.cardRunningHours} />
 							</View>
-							<Text style={styles.cardDescription} numberOfLines={3}>
+							<Text style={styles.cardDescription} numberOfLines={2}>
 								{info.overview}
 							</Text>
 						</View>

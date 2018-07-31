@@ -76,6 +76,29 @@ const styles = StyleSheet.create({
 				fontWeight: '100'
 			}
 		})
+	},
+	fab: {
+		position: 'relative'
+	},
+	TouchableOpacityStyle: {
+
+		position: 'absolute',
+		width: 50,
+		height: 50,
+		alignItems: 'center',
+		justifyContent: 'center',
+		right: 50,
+		bottom: 50,
+	},
+
+	FloatingButtonStyle: {
+		position: 'absolute',
+		// width: 50,
+		// height: 50,
+		// alignItems: 'center',
+		// justifyContent: 'center',
+		right: 50,
+		bottom: 50,
 	}
 });
 

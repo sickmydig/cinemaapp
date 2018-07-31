@@ -6,12 +6,20 @@ const styles = StyleSheet.create({
 		marginHorizontal: 16
 	},
 	card: {
-		backgroundColor: 'black',
+		backgroundColor: 'white',
 		borderRadius: 3,
 		minHeight: 148,
 		flexDirection: 'row',
 		paddingRight: 16,
+		alignItems: 'center',
 		overflow: 'hidden'
+	},
+	linearGradient: {
+		top: 0,
+		left: 0,
+		right: 0,
+		height: 163,
+		position: 'absolute'
 	},
 	cardDetails: {
 		paddingLeft: 10,

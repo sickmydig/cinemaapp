@@ -292,7 +292,7 @@ class Movie extends Component {
 									))
 								}
 							</View>
-							<View>
+							<View style={styles.favoriteSign}>
 								<TouchableOpacity activeOpacity={0.9} onPress={this._sendFavoriteMovie.bind(this, info.id)}>
 									<Icon name="md-bookmark" size={35} color={favoriteColorSign} />
 								</TouchableOpacity>
@@ -325,7 +325,7 @@ class Movie extends Component {
 							)}>
 							<Info tabLabel="INFO" info={info} />
 							{/*<Casts tabLabel="CASTS" info={info} getTabHeight={this._getTabHeight} />*/}
-							<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />
+							{/*<Trailers tabLabel="TRAILERS" youtubeVideos={this.state.youtubeVideos} openYoutube={this._openYoutube} getTabHeight={this._getTabHeight} />*/}
 						</ScrollableTabView>
 					</View>
 				</View>
