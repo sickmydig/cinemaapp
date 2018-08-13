@@ -7,12 +7,13 @@ const styles = StyleSheet.create({
 	},
 	card: {
 		backgroundColor: 'white',
-		borderRadius: 3,
+		borderRadius: 5,
 		minHeight: 148,
-		flexDirection: 'row',
-		paddingRight: 16,
-		alignItems: 'center',
-		overflow: 'hidden'
+		// flexDirection: 'row',
+		// paddingRight: 16,
+		// alignItems: 'center',
+		// overflow: 'hidden'
+
 	},
 	linearGradient: {
 		top: 0,
@@ -21,21 +22,46 @@ const styles = StyleSheet.create({
 		height: 163,
 		position: 'absolute'
 	},
-	cardDetails: {
+	imageBackdrop: {
+		height: 148,
+		backgroundColor: 'gray'
+	},
+	cardDetailsContainer: {
+		flex: 1,
+		flexDirection: 'row',
+		// justifyContent: 'center',
+		alignItems: 'center',
 		paddingLeft: 10,
-		flex: 1
+		paddingRight: 10,
+		paddingBottom: 20,
+		top: 110,
+		position: 'absolute'
+	},
+	cardTitle: {
+		color: 'white',
+		fontFamily: 'Open sans',
+		fontSize: 17,
+		fontWeight: '500'
+	},
+	cardStar: {
+		flexDirection: 'row',
+		marginLeft: 10,
+	},
+	cardStarRatings: {
+		marginLeft: 5,
+		fontSize: 15,
+		fontWeight: '400',
+		color: 'white'
+	},
+	cardDateLeft: {
+		flex: 1,
+		paddingRight: 10
 	},
 	cardImage: {
 		height: 153,
 		width: 130,
 		borderTopLeftRadius: 3,
 		borderBottomLeftRadius: 3
-	},
-	cardTitle: {
-		color: 'white',
-		fontSize: 15,
-		fontWeight: '500',
-		paddingTop: 10
 	},
 	cardGenre: {
 		flexDirection: 'row'
@@ -53,14 +79,6 @@ const styles = StyleSheet.create({
 	cardNumbers: {
 		flexDirection: 'row',
 		marginTop: 5
-	},
-	cardStar: {
-		flexDirection: 'row'
-	},
-	cardStarRatings: {
-		marginLeft: 5,
-		fontSize: 12,
-		color: 'white'
 	},
 	cardRunningHours: {
 		marginLeft: 5,
