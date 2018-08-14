@@ -12,7 +12,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import { TMDB_IMG_URL } from '../../../constants/api';
 import styles from './styles/CardThree';
 import CountDownDate from '../CountDownDate';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 
@@ -32,14 +31,18 @@ class CardThree extends Component {
 						<Image source={{ uri: `${TMDB_IMG_URL}/w780/${(info.backdrop_path || info.poster_path)}` }} style={styles.imageBackdrop} />
 						<LinearGradient colors={['rgba(0, 0, 0, 0)', 'rgba(0,0,0, 0.1)', 'rgba(0,0,0, 0.9)']} style={styles.linearGradient} />
 						<View style={styles.cardDetailsContainer}>
-							<Text
-								style={styles.cardTitle}
-								numberOfLines={2}>
-								{info.original_title}
-							</Text>
 							<View style={styles.cardStar}>
+								<View style={styles.cardTitle}>
+									<Text
+										style={styles.cardTitleText}
+										numberOfLines={1}>
+										{info.original_title}
+									</Text>
+								</View>
 								{iconStar}
-								<Text style={styles.cardStarRatings}>{info.vote_average.toFixed(1)}</Text>
+								<View>
+									<Text style={styles.cardStarRatings}>{info.vote_average.toFixed(1)}</Text>
+								</View>
 							</View>
 							<View style={styles.cardDateLeft}>
 								{upcoming > 0 ? <CountDownDate leftTime={upcoming} /> : <Text >{''}</Text> }

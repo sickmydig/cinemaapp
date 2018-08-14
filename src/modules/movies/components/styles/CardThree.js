@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
 	cardContainer: {
 		flex: 1,
-		marginHorizontal: 16
+		marginHorizontal: 10
 	},
 	card: {
 		backgroundColor: 'white',
@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
 		// paddingRight: 16,
 		// alignItems: 'center',
 		// overflow: 'hidden'
-
 	},
 	linearGradient: {
 		top: 0,
@@ -23,39 +22,47 @@ const styles = StyleSheet.create({
 		position: 'absolute'
 	},
 	imageBackdrop: {
-		height: 148,
-		backgroundColor: 'gray'
+		height: 163,
+		borderRadius: 5,
+		backgroundColor: 'black'
 	},
 	cardDetailsContainer: {
 		flex: 1,
 		flexDirection: 'row',
 		// justifyContent: 'center',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		paddingLeft: 10,
 		paddingRight: 10,
-		paddingBottom: 20,
+		paddingBottom: 5,
 		top: 110,
 		position: 'absolute'
 	},
+	cardStar: {
+		top: 20,
+		flexDirection: 'row',
+		marginLeft: 5,
+		alignItems: 'flex-end'
+	},
 	cardTitle: {
+		right: 5
+	},
+	cardTitleText: {
 		color: 'white',
-		fontFamily: 'Open sans',
+		fontFamily: 'Arial Bold',
 		fontSize: 17,
 		fontWeight: '500'
-	},
-	cardStar: {
-		flexDirection: 'row',
-		marginLeft: 10,
 	},
 	cardStarRatings: {
 		marginLeft: 5,
 		fontSize: 15,
-		fontWeight: '400',
+		fontWeight: '500',
 		color: 'white'
 	},
 	cardDateLeft: {
 		flex: 1,
-		paddingRight: 10
+		alignItems: 'flex-end',
+		paddingRight: 5,
+		paddingBottom: 10
 	},
 	cardImage: {
 		height: 153,
