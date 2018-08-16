@@ -29,16 +29,7 @@ class Search extends Component {
 			searchResults: {
 				results: []
 			},
-			query: null,
-			// repos: {
-			// 	movie_category: {
-			// 		title: 'category',
-			// 		type: 'Thriller'
-			// 	}
-			// }
-			// genres: {
-			// 	results: []
-			// }
+			query: null
 		};
 
 		this._viewMovie = this._viewMovie.bind(this);
@@ -164,7 +155,7 @@ class Search extends Component {
 				</View>
 				{ !this.state.isLoading && this._renderListView() }
 				{/*<CategoryWithLoading isLoading={false} genres={this.state.genres} message={'this is more parameter i passed over'} />*/}
-				<CategoryMixed isLoading={false} genres={this.props.genres} />
+				{/*<CategoryMixed isLoading={false} genres={this.props.genres} />*/}
 			</View>
 		);
 	}

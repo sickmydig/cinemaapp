@@ -61,6 +61,11 @@
 		"type": "git",
 		"url": "git+https://github.com/sickmydig/movieapp.git"
 	},
+	"rnpm": {
+		"assets": [
+			"./assets/fonts/"
+		]
+	},
 	"author": "lam tac <lamptdev@gmail.com>",
 	"license": "MIT",
 	"homepage": "https://github.com/sickmydig/movieapp#readme"

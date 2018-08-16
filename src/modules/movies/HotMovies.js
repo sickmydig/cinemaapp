@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
-import GridView from 'react-native-grid-view'
-import axios from 'axios';
+import WithLoading from './WithLoading';
+import CardMixed from './components/CardMixed';
 import {
 	StyleSheet,
 	Text,
@@ -20,11 +20,14 @@ import * as moviesActions from './movies.actions';
 import I18n from '../../i18n';
 import FavoriteItem from "./FavoriteItem";
 
+const CategoryView = WithLoading(CardMixed);
+
 class HotMovies extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			isGridView: true,
 			isLoading: true,
 			isRefreshing: false,
 			page: 0,
@@ -81,7 +84,7 @@ class HotMovies extends Component {
 		);
 	}
 
-	render() {
+	/*render() {
 		const pages = this.state.page;
 		console.log('props at render ', this.props.favorites.results);
 		return (
@@ -91,12 +94,6 @@ class HotMovies extends Component {
 					{pages}
 					{I18n.t('usGallons')}
 				</Text>
-
-				{/*<GridView*/}
-					{/*items={this.state.favorites.results}*/}
-					{/*itemsPerRow={3}*/}
-					{/*renderItem={this.renderItem}*/}
-				{/*/>*/}
 
 				<ListView
 					style={styles.container}
@@ -119,6 +116,18 @@ class HotMovies extends Component {
 						/>
 					}
 				/>
+			</View>
+		);
+	}
+	*/
+
+	render() {
+		const pages = this.state.page;
+		console.log('props at render ', this.props.favorites.results);
+		return (
+			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
+			<View style={styles.container}>
+				<CategoryView isLoading={false} genres={this.props.favorites.results} />
 			</View>
 		);
 	}

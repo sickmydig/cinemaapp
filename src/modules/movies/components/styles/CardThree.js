@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 		position: 'absolute'
 	},
 	cardStar: {
-		top: 20,
+		top: 22,
 		flexDirection: 'row',
 		marginLeft: 5,
 		alignItems: 'flex-end'
@@ -48,13 +48,14 @@ const styles = StyleSheet.create({
 	},
 	cardTitleText: {
 		color: 'white',
-		fontFamily: 'Arial Bold',
+		// fontFamily: 'Helvetica Neue ,Helvetica,Arial,sans-serif',
+		fontFamily: 'open sans, arial, Helvetica',
 		fontSize: 17,
-		fontWeight: '500'
+		fontWeight: '600'
 	},
 	cardStarRatings: {
 		marginLeft: 5,
-		fontSize: 15,
+		fontSize: 17,
 		fontWeight: '500',
 		color: 'white'
 	},
