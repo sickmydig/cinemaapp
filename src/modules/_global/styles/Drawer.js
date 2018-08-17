@@ -17,9 +17,18 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginBottom: 23
 	},
+	selectedDrawerMenuText: {
+		color: 'yellow',
+		fontWeight: 'bold',
+		fontFamily: 'times new roman',
+		fontSize: 23,
+		paddingLeft: 15,
+		flex: 1
+	},
 	drawerListItemText: {
 		color: 'white',
 		fontWeight: 'bold',
+		fontFamily: 'times new roman',
 		fontSize: 23,
 		paddingLeft: 15,
 		flex: 1

@@ -19,15 +19,24 @@ class Drawer extends Component {
 		this._goToMovies = this._goToMovies.bind(this);
 		this._goToFavorites = this._goToFavorites.bind(this);
 		this._openSearch = this._openSearch.bind(this);
+		this._eventSelectedMenu = this._eventSelectedMenu.bind(this);
 		this.state = {
+			drawerSelected: 0,
 			list: {
 				results: []
 			}
 		};
 	}
 
+
+
 	componentDidMount() {
 		console.log('drawer state ', this.state.favorites);
+	}
+
+	_eventSelectedMenu(menu) {
+		const currentPick = this.setState({ drawerSelected: menu });
+		console.log('current menu item at', currentPick);
 	}
 
 	_openSearch() {
@@ -39,6 +48,7 @@ class Drawer extends Component {
 	}
 
 	_goToMovies() {
+		this._eventSelectedMenu(0);
 		this._toggleDrawer();
 		this.props.navigator.popToRoot({
 			screen: 'movieapp.Movies'
@@ -46,6 +56,7 @@ class Drawer extends Component {
 	}
 
 	_goToFavorites() {
+		this._eventSelectedMenu(1);
 		this._toggleDrawer();
 		this.props.navigator.showModal({
 			screen: 'movieapp.Favorites',
@@ -62,6 +73,7 @@ class Drawer extends Component {
 	}
 
 	render() {
+		console.log('menu item at render', this.state.drawerSelected);
 		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
@@ -96,7 +108,7 @@ class Drawer extends Component {
 						<TouchableOpacity onPress={this._goToFavorites}>
 							<View style={styles.drawerListItem}>
 								{favorites}
-								<Text style={styles.drawerListItemText} >
+								<Text style={(this.state.drawerSelected === 1) ? styles.selectedDrawerMenuText : styles.drawerListItemText} >
 									Favorite
 								</Text>
 								<Text style={styles.drawerListItemText} >

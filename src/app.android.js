@@ -14,7 +14,7 @@ const navigatorStyle = {
 	statusBarColor: 'black',
 	statusBarTextColorScheme: 'light',
 	navigationBarColor: 'black',
-	navBarBackgroundColor: '#0a0a0a',
+	navBarBackgroundColor: '#0a0a0a', // custom color here
 	navBarTextColor: 'white',
 	navBarButtonColor: 'white',
 	tabBarButtonColor: 'grey',
@@ -23,7 +23,8 @@ const navigatorStyle = {
 	topBarElevationShadowEnabled: false,
 	navBarHideOnScroll: true,
 	tabBarHidden: false,
-	drawUnderTabBar: true
+	drawUnderTabBar: true,
+	fontFamily: 'Avenir-Medium'
 };
 
 
