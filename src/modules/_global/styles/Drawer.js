@@ -20,16 +20,15 @@ const styles = StyleSheet.create({
 	selectedDrawerMenuText: {
 		color: 'yellow',
 		fontWeight: 'bold',
-		fontFamily: 'times new roman',
+		fontFamily: 'arial',
 		fontSize: 23,
 		paddingLeft: 15,
 		flex: 1
 	},
 	drawerListItemText: {
 		color: 'white',
-		fontWeight: 'bold',
-		fontFamily: 'times new roman',
-		fontSize: 23,
+		fontFamily: 'MontserratAlternates-SemiBold',
+		fontSize: 20,
 		paddingLeft: 15,
 		flex: 1
 	},

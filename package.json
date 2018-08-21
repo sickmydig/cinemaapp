@@ -35,12 +35,11 @@
 		"react-native-square-grid": "^1.0.5",
 		"react-native-swiper": "^1.5.4",
 		"react-native-timeline-listview": "^0.2.3",
-		"react-native-vector-icons": "^4.2.0",
+		"react-native-vector-icons": "^4.6.0",
 		"react-redux": "^5.0.5",
 		"redux": "^3.6.0",
 		"redux-react-native-i18n": "^1.1.0",
-		"redux-thunk": "^2.2.0",
-		"uninstall": "0.0.0"
+		"redux-thunk": "^2.2.0"
 	},
 	"jest": {
 		"preset": "jest-react-native"
@@ -56,14 +55,14 @@
 		"redux-immutable-state-invariant": "^2.1.0",
 		"redux-logger": "^3.0.6"
 	},
-	"description": "Discover movies and tv shows",
+	"description": "Utility for films and movies",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sickmydig/movieapp.git"
 	},
 	"rnpm": {
 		"assets": [
-			"./assets/fonts/"
+			"assets/fonts"
 		]
 	},
 	"author": "lam tac <lamptdev@gmail.com>",

@@ -28,12 +28,6 @@ class Drawer extends Component {
 		};
 	}
 
-
-
-	componentDidMount() {
-		console.log('drawer state ', this.state.favorites);
-	}
-
 	_eventSelectedMenu(menu) {
 		const currentPick = this.setState({ drawerSelected: menu });
 		console.log('current menu item at', currentPick);
@@ -108,7 +102,7 @@ class Drawer extends Component {
 						<TouchableOpacity onPress={this._goToFavorites}>
 							<View style={styles.drawerListItem}>
 								{favorites}
-								<Text style={(this.state.drawerSelected === 1) ? styles.selectedDrawerMenuText : styles.drawerListItemText} >
+								<Text style={(this.state.drawerSelected === 1) ?  styles.selectedDrawerMenuText : styles.drawerListItemText} >
 									Favorite
 								</Text>
 								<Text style={styles.drawerListItemText} >

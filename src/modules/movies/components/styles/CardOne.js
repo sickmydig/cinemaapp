@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	cardTitle: {
+		fontFamily: 'MontserratAlternates-SemiBold',
 		color: 'white',
 		fontSize: 19,
-		fontWeight: '500',
+		// fontWeight: '500',
 		paddingTop: 10
 	},
 	cardGenre: {

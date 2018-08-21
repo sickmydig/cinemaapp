@@ -49,14 +49,15 @@ const styles = StyleSheet.create({
 	cardTitleText: {
 		color: 'white',
 		// fontFamily: 'Helvetica Neue ,Helvetica,Arial,sans-serif',
-		fontFamily: 'open sans, arial, Helvetica',
+		fontFamily: 'MontserratAlternates-SemiBold',
 		fontSize: 17,
-		fontWeight: '600'
+		// fontWeight: '600'
 	},
 	cardStarRatings: {
+		fontFamily: 'MontserratAlternates-SemiBold',
 		marginLeft: 5,
 		fontSize: 17,
-		fontWeight: '500',
+		// fontWeight: '500',
 		color: 'white'
 	},
 	cardDateLeft: {
