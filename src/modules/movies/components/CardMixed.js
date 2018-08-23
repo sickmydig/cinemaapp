@@ -12,6 +12,7 @@ import { TMDB_IMG_URL } from "../../../constants/api";
 const iconClose = <Icon name="md-close" size={20} color="#F5B642" />;
 
 const CardMixed = props => {
+	const action = props.action;
 	const genresArr = props.genres;
 	if (genresArr.length === 0) return null;
 	const modRows = genresArr.length % 3;

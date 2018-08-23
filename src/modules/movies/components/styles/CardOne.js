@@ -40,13 +40,15 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	cardGenreItem: {
+		fontFamily: 'MontserratAlternates-SemiBold',
 		fontSize: 11,
 		marginRight: 5,
 		color: 'white'
 	},
 	cardDescription: {
+		fontFamily: 'MontserratAlternates-SemiBold',
 		color: '#f7f7f7',
-		fontSize: 13,
+		fontSize: 12,
 		marginTop: 5
 	},
 	cardNumbers: {
@@ -70,11 +72,12 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderRadius: 3,
 		backgroundColor: '#fff',
-		width: 100,
+		width: 110,
 		height: 30,
 		marginTop: 10
 	},
 	viewButtonText: {
+		fontFamily: 'MontserratAlternates-SemiBold',
 		color: 'black'
 	}
 });

@@ -24,7 +24,7 @@ const navigatorStyle = {
 	navBarHideOnScroll: true,
 	tabBarHidden: false,
 	drawUnderTabBar: true,
-	fontFamily: 'Montserrat'
+	fontFamily: 'MontserratAlternates-SemiBold'
 };
 
 

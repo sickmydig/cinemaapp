@@ -11,7 +11,7 @@ import IconEx from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 
 import styles from './styles/Drawer';
-
+import drawerHandler from './HandleDrawerMenu';
 class Drawer extends Component {
 	constructor(props) {
 		super(props);
@@ -67,11 +67,14 @@ class Drawer extends Component {
 	}
 
 	render() {
-		console.log('menu item at render', this.state.drawerSelected);
+		// console.log('menu item at render', this.state.drawerSelected);
 		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 		const favorites = (<IconEx name="volume-down" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
+		const fontSelect = drawerHandler({ weight: 'SemiBold', style: 'Italic' });
+		const {color} = fontSelect;
+		console.log(fontSelect);
 		const { totalFavorites } = this.props;
 		return (
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
@@ -102,7 +105,10 @@ class Drawer extends Component {
 						<TouchableOpacity onPress={this._goToFavorites}>
 							<View style={styles.drawerListItem}>
 								{favorites}
-								<Text style={(this.state.drawerSelected === 1) ?  styles.selectedDrawerMenuText : styles.drawerListItemText} >
+								{/*<Text style={(this.state.drawerSelected === 1) ?  styles.selectedDrawerMenuText : styles.drawerListItemText} >*/}
+									{/*Favorite*/}
+								{/*</Text>*/}
+								<Text style={{color: 'yellow' }} >
 									Favorite
 								</Text>
 								<Text style={styles.drawerListItemText} >
