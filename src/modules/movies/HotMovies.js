@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import WithLoading from './WithLoading';
 import CardMixed from './components/CardMixed';
@@ -9,7 +8,6 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	RefreshControl,
 	ListView
 } from 'react-native';
 
@@ -127,7 +125,7 @@ class HotMovies extends Component {
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :
 			<View style={styles.container}>
-				<CategoryView isLoading={false} genres={this.props.favorites.results} />
+				<CategoryView isLoading={false} genres={this.props.favorites.results} action={this.props.actions} />
 			</View>
 		);
 	}

@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+import { FONT_TITLE } from '../../../../constants/ComonNames';
+import { FONT_NORMAL } from '../../../../constants/ComonNames';
 
 const styles = StyleSheet.create({
 	linearGradient: {
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	cardTitle: {
-		fontFamily: 'MontserratAlternates-SemiBold',
+		fontFamily: FONT_TITLE,
 		color: 'white',
 		fontSize: 19,
 		// fontWeight: '500',
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
 		color: 'white'
 	},
 	cardDescription: {
-		fontFamily: 'MontserratAlternates-SemiBold',
+		fontFamily: FONT_NORMAL,
 		color: '#f7f7f7',
 		fontSize: 12,
 		marginTop: 5
