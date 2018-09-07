@@ -233,10 +233,7 @@ class Movie extends Component {
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		// '2018-09-08'
 		let height;
-		const heightTest = {
-			height: 250,
-			justifyContent: 'bottom'
-		};
+
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
 		if (this.state.tab === 1) height = this.state.castsTabHeight;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;

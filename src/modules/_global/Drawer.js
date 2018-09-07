@@ -6,12 +6,18 @@ import {
 	ToastAndroid
 } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconEx from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
-
 import styles from './styles/Drawer';
-import drawerHandler from './HandleDrawerMenu';
+import SideDrawerItem from './stateless/SideDrawerItem';
+
+import drawerStylesMaker from './drawerStylesMaker';
+import { SEARCH_MENU, MOVIE_MENU, FAVORITE_MENU } from '../../constants/ComonNames';
+import * as moviesActions from "../movies/movies.actions";
+
+
 class Drawer extends Component {
 	constructor(props) {
 		super(props);
@@ -20,17 +26,28 @@ class Drawer extends Component {
 		this._goToFavorites = this._goToFavorites.bind(this);
 		this._openSearch = this._openSearch.bind(this);
 		this._eventSelectedMenu = this._eventSelectedMenu.bind(this);
+		//this._onEventPress = this._eventSelectedMenu.bind(this);
+		this._toggleSelectedDrawer = this._toggleSelectedDrawer.bind(this);
 		this.state = {
-			drawerSelected: 0,
+			drawerSelected: [],
+			isLoading: true,
 			list: {
 				results: []
 			}
 		};
 	}
 
-	_eventSelectedMenu(menu) {
-		const currentPick = this.setState({ drawerSelected: menu });
-		console.log('current menu item at', currentPick);
+	// _onEventPress(data) {
+	// 	this.setState({ drawerSelected: data });
+	// }
+	componentWillMount() {
+		this.props.actions.retrieveMenuLocalSuccess();
+
+	}
+
+	_eventSelectedMenu() {
+		// const currentPick = this.setState({ drawerSelected: menu });
+		console.log('current menu item at', this.state.drawerSelected);
 	}
 
 	_openSearch() {
@@ -42,7 +59,7 @@ class Drawer extends Component {
 	}
 
 	_goToMovies() {
-		this._eventSelectedMenu(0);
+		// this._eventSelectedMenu(0);
 		this._toggleDrawer();
 		this.props.navigator.popToRoot({
 			screen: 'movieapp.Movies'
@@ -50,7 +67,7 @@ class Drawer extends Component {
 	}
 
 	_goToFavorites() {
-		this._eventSelectedMenu(1);
+		// this._eventSelectedMenu(1);
 		this._toggleDrawer();
 		this.props.navigator.showModal({
 			screen: 'movieapp.Favorites',
@@ -64,22 +81,37 @@ class Drawer extends Component {
 			side: 'left',
 			animated: true
 		});
+	};
+
+	_toggleSelectedDrawer() {
+		this._toggleDrawer();
 	}
 
 	render() {
-		// console.log('menu item at render', this.state.drawerSelected);
+
+		const {drawers} = this.props;
+		if (drawers)
+
+		console.log('show sesame:', drawers);
 		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 		const favorites = (<IconEx name="volume-down" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
-		const fontSelect = drawerHandler({ weight: 'SemiBold', style: 'Italic' });
-		const {color} = fontSelect;
-		console.log(fontSelect);
+		let menus = ["first", "second"];
+		// let menus = {1:"first", 2:"second"};
+			// menus = this.props.drawers;
+		// The way to retrieve current drawer item
+		const fontFamily = drawerStylesMaker({ weight: 'SemiBold', style: 'Italic', color: 'blue', drawerItem: 'favorite' });
+		console.log('font family data for favorite menu click', fontFamily);
 		const { totalFavorites } = this.props;
 		return (
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
 				<View style={styles.container}>
 					<View style={styles.drawerList}>
+						{menus.map((key, item) =>
+							<SideDrawerItem key={key} item={item} inheritFunctions={this._toggleSelectedDrawer} />
+						)}
+
 						<TouchableOpacity onPress={this._openSearch}>
 							<View style={styles.drawerListItem}>
 								{iconSearch}
@@ -88,6 +120,7 @@ class Drawer extends Component {
 								</Text>
 							</View>
 						</TouchableOpacity>
+
 						<TouchableOpacity onPress={this._goToMovies}>
 							<View style={styles.drawerListItem}>
 								{iconMovies}
@@ -108,7 +141,7 @@ class Drawer extends Component {
 								{/*<Text style={(this.state.drawerSelected === 1) ?  styles.selectedDrawerMenuText : styles.drawerListItemText} >*/}
 									{/*Favorite*/}
 								{/*</Text>*/}
-								<Text style={{color: 'yellow' }} >
+								<Text style={styles.selectedDrawerMenuText} >
 									Favorite
 								</Text>
 								<Text style={styles.drawerListItemText} >
@@ -136,7 +169,14 @@ class Drawer extends Component {
 function mapStateToProps(state, ownProps) {
 	return {
 		list: state.movies.favorites,
+		drawers: state.menu.drawers,
 		totalFavorites: state.movies.favorites.total_results
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(moviesActions, dispatch)
 	};
 }
 
@@ -145,9 +185,11 @@ Drawer.defaultProps = {
 };
 
 Drawer.propTypes = {
+	actions: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
-	totalFavorites: PropTypes.number.isRequired
+	totalFavorites: PropTypes.number.isRequired,
+	drawers: PropTypes.array
 	// list: PropTypes.object.required
 };
 
-export default connect(mapStateToProps)(Drawer);
+export default connect(mapStateToProps, mapDispatchToProps)(Drawer);

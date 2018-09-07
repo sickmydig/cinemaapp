@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import I18n from '../../i18n';
-
+import Timeline from 'react-native-timeline-listview';
 import {
 	StyleSheet,
 	Text,
 	View,
 	Image
 } from 'react-native';
-import Timeline from 'react-native-timeline-listview'
 
 export default class TVShow extends Component {
 	constructor() {

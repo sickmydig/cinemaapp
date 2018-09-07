@@ -5,7 +5,12 @@ import { TMDB_URL, TMDB_API_KEY, TMDB_SESSION_ID } from '../../constants/api';
 // LOCALE
 export const setLocales = payload => ({
 	type: types.SET_LOCALES,
-	payload,
+	payload
+});
+
+export const retrieveMenuLocalSuccess = payload => ({
+	type: types.RETRIEVE_MENU,
+	actionMenu: payload
 });
 
 // GENRES
