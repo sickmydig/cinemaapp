@@ -7,11 +7,12 @@ import {
 	TouchableOpacity
 } from 'react-native';
 
+
 const SideDrawerItem = ({ inheritFunctions, item }) => (
 	<TouchableOpacity onPress={inheritFunctions}>
 		<View style={styles.drawerListItem}>
 			<Text style={styles.itemtext}>
-				{item}
+				{item.title}
 			</Text>
 		</View>
 	</TouchableOpacity>
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
 
 SideDrawerItem.propTypes = {
 	inheritFunctions: PropTypes.func.isRequired,
-	item: PropTypes.number.isRequired
+	item: PropTypes.object.isRequired
 };
 
 export default SideDrawerItem;

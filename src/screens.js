@@ -6,13 +6,17 @@ import Movies from './modules/movies/Movies';
 import Favorites from './modules/movies/HotMovies';
 import MoviesList from './modules/movies/MoviesList';
 import Movie from './modules/movies/Movie';
+import {
+SCREEN_MOVIES, SCREEN_FAVORITE, SCREEN_MOVIE,
+SCREEN_SEARCH, SCREEN_MOVIE_LIST, SCREEN_DRAWER
+} from './constants/ComonNames';
 import Search from './modules/movies/Search';
 
 export function registerScreens(store, Provider) {
-	Navigation.registerComponent('movieapp.Movie', () => Movie, store, Provider);
-	Navigation.registerComponent('movieapp.Movies', () => Movies, store, Provider);
-	Navigation.registerComponent('movieapp.MoviesList', () => MoviesList, store, Provider);
-	Navigation.registerComponent('movieapp.Search', () => Search, store, Provider);
-	Navigation.registerComponent('movieapp.Drawer', () => Drawer, store, Provider);
-	Navigation.registerComponent('movieapp.Favorites', () => Favorites, store, Provider);
+	Navigation.registerComponent(SCREEN_MOVIE, () => Movie, store, Provider);
+	Navigation.registerComponent(SCREEN_MOVIES, () => Movies, store, Provider);
+	Navigation.registerComponent(SCREEN_MOVIE_LIST, () => MoviesList, store, Provider);
+	Navigation.registerComponent(SCREEN_SEARCH, () => Search, store, Provider);
+	Navigation.registerComponent(SCREEN_DRAWER, () => Drawer, store, Provider);
+	Navigation.registerComponent(SCREEN_FAVORITE, () => Favorites, store, Provider);
 }

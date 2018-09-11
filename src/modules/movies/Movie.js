@@ -226,7 +226,6 @@ class Movie extends Component {
 
 	render() {
 		// console.log('<<<<<<<<<<<<<<<<<<< RENDER PHASE >>>>>>>>>>>>>>>>>>>>');
-
 		console.log('>>>>>>>>>>>>>>>>>>>>>> Movie render');
 		const { details } = this.props;
 		const info = details;
@@ -237,7 +236,6 @@ class Movie extends Component {
 		if (this.state.tab === 0) height = this.state.infoTabHeight;
 		if (this.state.tab === 1) height = this.state.castsTabHeight;
 		if (this.state.tab === 2) height = this.state.trailersTabHeight;
-		console.log('render withHeight ', height);
 		const favoriteColorSign = (this.state.isFavorite) ? '#d78c45' : '#c0c9d7';
 		return (
 			this.state.isLoading ? <View style={styles.progressBar}><ProgressBar /></View> :

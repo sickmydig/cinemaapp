@@ -2,7 +2,6 @@ import I18n from '../i18n';
 
 export default {
 	movies: {
-		drawerItems: {},
 		similar: {},
 		details: {},
 		genres: {},

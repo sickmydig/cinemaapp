@@ -38,7 +38,7 @@ const LoadScreen = {
 			id: 'sideMenu'
 		}
 	]
-}
+};
 
 /*Navigation.startSingleScreenApp({
 	screen: LoadScreen,
@@ -50,32 +50,32 @@ const LoadScreen = {
 });*/
 
 Navigation.startTabBasedApp(
-{
-	tabs: [
-		{
-			screen: 'movieapp.MoviesList',
-			title: 'on the Theathe',
-			label: 'On The Thearthe',
-			icon: require('./modules/img/film.png'),
-			navigatorStyle
-		},
-		{
-			screen: 'movieapp.Movies',
-			// screen: 'movieapp.Countdown',
-			title: 'hot movies',
-			label: 'Hot movies',
-			icon: require('./modules/img/filmclapboard.png'),
-			navigatorStyle,
-			leftButtons: [
-				{
-					id: 'sideMenu'
-				}
-			]
-		}
-	],
+	{
+		tabs: [
+			{
+				screen: 'movieapp.MoviesList',
+				title: 'on the Theathe',
+				label: 'On The Thearthe',
+				icon: require('./modules/img/film.png'),
+				navigatorStyle
+			},
+			{
+				screen: 'movieapp.Movies',
+				// screen: 'movieapp.Countdown',
+				title: 'hot movies',
+				label: 'Hot movies',
+				icon: require('./modules/img/filmclapboard.png'),
+				navigatorStyle,
+				leftButtons: [
+					{
+						id: 'sideMenu'
+					}
+				]
+			}
+		],
 		drawer: {
 			left: {
 				screen: 'movieapp.Drawer'
 			}
 		}
-});
+	});

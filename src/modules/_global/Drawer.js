@@ -42,7 +42,6 @@ class Drawer extends Component {
 	// }
 	componentWillMount() {
 		this.props.actions.retrieveMenuLocalSuccess();
-
 	}
 
 	_eventSelectedMenu() {
@@ -88,29 +87,35 @@ class Drawer extends Component {
 	}
 
 	render() {
+		const { drawers } = this.props;
 
-		const {drawers} = this.props;
-		if (drawers)
+		if (drawers) {
+			console.log('--->', drawers);
+		}
 
-		console.log('show sesame:', drawers);
+		// console.log('show sesame:', drawers);
 		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 		const favorites = (<IconEx name="volume-down" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
-		let menus = ["first", "second"];
+		//let menus = ["first", "second"];
+
 		// let menus = {1:"first", 2:"second"};
-			// menus = this.props.drawers;
 		// The way to retrieve current drawer item
 		const fontFamily = drawerStylesMaker({ weight: 'SemiBold', style: 'Italic', color: 'blue', drawerItem: 'favorite' });
-		console.log('font family data for favorite menu click', fontFamily);
+		// console.log('font family data for favorite menu click', fontFamily);
 		const { totalFavorites } = this.props;
 		return (
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
 				<View style={styles.container}>
 					<View style={styles.drawerList}>
-						{menus.map((key, item) =>
-							<SideDrawerItem key={key} item={item} inheritFunctions={this._toggleSelectedDrawer} />
-						)}
+						{
+							(drawers) ? drawers.map((value, item) =>
+								<SideDrawerItem key={item} item={value} inheritFunctions={this._toggleSelectedDrawer} />
+							) : <View><Text style={styles.drawerListItemText}>
+								{'non non'}
+							</Text></View>
+						}
 
 						<TouchableOpacity onPress={this._openSearch}>
 							<View style={styles.drawerListItem}>
