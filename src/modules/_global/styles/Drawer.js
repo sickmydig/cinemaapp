@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 	drawerListItemText: {
 		color: 'white',
 		fontFamily: 'MontserratAlternates-SemiBold',
-		fontSize: 20,
+		fontSize: 22,
 		paddingLeft: 15,
 		flex: 1
 	},

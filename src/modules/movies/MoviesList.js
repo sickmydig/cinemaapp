@@ -36,6 +36,10 @@ class MoviesList extends Component {
 	}
 
 	componentWillMount() {
+
+	}
+
+	componentDidMount() {
 		this._retrieveMoviesList();
 	}
 

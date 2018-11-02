@@ -6,10 +6,7 @@ import Movies from './modules/movies/Movies';
 import Favorites from './modules/movies/HotMovies';
 import MoviesList from './modules/movies/MoviesList';
 import Movie from './modules/movies/Movie';
-import {
-SCREEN_MOVIES, SCREEN_FAVORITE, SCREEN_MOVIE,
-SCREEN_SEARCH, SCREEN_MOVIE_LIST, SCREEN_DRAWER
-} from './constants/ComonNames';
+import { SCREEN_MOVIES, SCREEN_FAVORITE, SCREEN_MOVIE, SCREEN_SEARCH, SCREEN_MOVIE_LIST, SCREEN_DRAWER } from './constants/ComonNames';
 import Search from './modules/movies/Search';
 
 export function registerScreens(store, Provider) {

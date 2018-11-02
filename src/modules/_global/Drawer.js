@@ -29,6 +29,7 @@ class Drawer extends Component {
 		//this._onEventPress = this._eventSelectedMenu.bind(this);
 		this._toggleSelectedDrawer = this._toggleSelectedDrawer.bind(this);
 		this.state = {
+			// drawerSelected: [],
 			drawerSelected: [],
 			isLoading: true,
 			list: {
@@ -41,7 +42,21 @@ class Drawer extends Component {
 	// 	this.setState({ drawerSelected: data });
 	// }
 	componentWillMount() {
-		this.props.actions.retrieveMenuLocalSuccess();
+
+	}
+
+	componentDidMount() {
+		//this.props.actions.retrieveMenuLocalSuccess()
+	}
+
+	shouldComponentUpdate(nextProps) {
+		console.log('should update here ', this.props.drawers, nextProps.drawers);
+		// this.props.actions.retrieveMenuLocalSuccess();
+		// if (typeof this.props.drawers === 'undefined') {
+		// 	console.log('---> updated props in drawers', nextProps.drawers);
+		// 	return false;
+		// }
+		return true;
 	}
 
 	_eventSelectedMenu() {
@@ -80,27 +95,20 @@ class Drawer extends Component {
 			side: 'left',
 			animated: true
 		});
-	};
+	}
 
-	_toggleSelectedDrawer() {
-		this._toggleDrawer();
+	_toggleSelectedDrawer(id) {
+		// this._toggleDrawer();
+		this.props.actions.clickOnMenu(id);
 	}
 
 	render() {
 		const { drawers } = this.props;
-
-		if (drawers) {
-			console.log('--->', drawers);
-		}
-
-		// console.log('show sesame:', drawers);
 		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 		const favorites = (<IconEx name="volume-down" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
-		//let menus = ["first", "second"];
 
-		// let menus = {1:"first", 2:"second"};
 		// The way to retrieve current drawer item
 		const fontFamily = drawerStylesMaker({ weight: 'SemiBold', style: 'Italic', color: 'blue', drawerItem: 'favorite' });
 		// console.log('font family data for favorite menu click', fontFamily);
@@ -110,11 +118,20 @@ class Drawer extends Component {
 				<View style={styles.container}>
 					<View style={styles.drawerList}>
 						{
+
 							(drawers) ? drawers.map((value, item) =>
-								<SideDrawerItem key={item} item={value} inheritFunctions={this._toggleSelectedDrawer} />
-							) : <View><Text style={styles.drawerListItemText}>
-								{'non non'}
-							</Text></View>
+								<SideDrawerItem key={item} item={value} inheritFunctions={() => this._toggleSelectedDrawer(value.id)} id={value.id} isActive={value.isActive} />
+							)
+								:
+								<TouchableOpacity onPress={this._openSearch}>
+									<View style={styles.drawerListItem}>
+										{iconSearch}
+										<Text style={styles.drawerListItemText}>
+											not yet add drawers
+										</Text>
+									</View>
+								</TouchableOpacity>
+
 						}
 
 						<TouchableOpacity onPress={this._openSearch}>
@@ -175,6 +192,7 @@ function mapStateToProps(state, ownProps) {
 	return {
 		list: state.movies.favorites,
 		drawers: state.menu.drawers,
+		// drawers: state.menu,
 		totalFavorites: state.movies.favorites.total_results
 	};
 }

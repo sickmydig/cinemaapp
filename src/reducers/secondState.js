@@ -5,7 +5,7 @@ export default {
 		drawers: [
 			{
 				id: 1,
-				isActive: false,
+				isActive: true,
 				menu: SEARCH_MENU,
 				title: 'tim kiem',
 				imageUrl: 'https://cloud.githubusercontent.com/assets/21040043/24240340/c0f96b3a-0fe3-11e7-8964-fe66e4d9be7a.jpg'

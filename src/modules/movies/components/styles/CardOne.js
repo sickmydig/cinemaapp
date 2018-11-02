@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FONT_NORMAL, FONT_TITLE } from '../../../../constants/ComonNames';
+import { FONT_MEDIUM, FONT_SEMI_BOLD } from '../../../../constants/ComonNames';
 
 const styles = StyleSheet.create({
 	linearGradient: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	cardTitle: {
-		fontFamily: FONT_TITLE,
+		fontFamily: FONT_SEMI_BOLD,
 		color: 'white',
 		fontSize: 19,
 		// fontWeight: '500',
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	cardGenreItem: {
-		fontFamily: FONT_TITLE,
+		fontFamily: FONT_SEMI_BOLD,
 		fontSize: 11,
 		marginRight: 5,
 		color: 'white'
 	},
 	cardDescription: {
-		fontFamily: FONT_NORMAL,
+		fontFamily: FONT_MEDIUM,
 		color: '#f7f7f7',
 		fontSize: 12,
 		marginTop: 5
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 		marginTop: 10
 	},
 	viewButtonText: {
-		fontFamily: FONT_TITLE,
+		fontFamily: FONT_SEMI_BOLD,
 		color: 'black'
 	}
 });

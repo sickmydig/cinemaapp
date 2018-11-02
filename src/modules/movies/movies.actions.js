@@ -13,6 +13,18 @@ export const retrieveMenuLocalSuccess = payload => ({
 	actionMenu: payload
 });
 
+// export const clickOnMenu = id => ({
+// 	type: 'MENU_CLICKED',
+// 	actionMenu: id
+// });
+
+export function clickOnMenu(id) {
+	return {
+		type: types.MENU_CLICKED,
+		actionMenu: id
+	};
+}
+
 // GENRES
 export function retrieveMoviesGenresSuccess(res) {
 	return {

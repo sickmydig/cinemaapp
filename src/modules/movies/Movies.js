@@ -37,11 +37,12 @@ class Movies extends Component {
 	}
 
 	componentWillMount() {
-		this._retrieveMovies();
+
 	}
 
 
 	componentDidMount() {
+		this._retrieveMovies();
 		this.props.actions.retrieveFavorites();
 		this.props.actions.retrievePopularMovies();
 		this.props.actions.retrieveMoviesGenres();

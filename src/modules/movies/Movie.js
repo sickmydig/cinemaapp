@@ -63,12 +63,13 @@ class Movie extends Component {
 	}
 
 	componentWillMount() {
-		this._retrieveDetails();
-		this._checkFavoriteMovie();
+
 	}
 
 	componentDidMount() {
 		console.log('fetch the similar movies', this.state.isFavorite);
+		this._retrieveDetails();
+		this._checkFavoriteMovie();
 		this._retrieveSimilarMovies();
 	}
 
