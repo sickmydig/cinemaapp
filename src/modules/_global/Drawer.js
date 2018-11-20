@@ -17,6 +17,7 @@ import drawerStylesMaker from './drawerStylesMaker';
 import { SEARCH_MENU, MOVIE_MENU, FAVORITE_MENU } from '../../constants/ComonNames';
 import * as moviesActions from "../movies/movies.actions";
 
+export const cache = {};
 
 class Drawer extends Component {
 	constructor(props) {
@@ -27,7 +28,6 @@ class Drawer extends Component {
 		this._openSearch = this._openSearch.bind(this);
 		this._eventSelectedMenu = this._eventSelectedMenu.bind(this);
 		//this._onEventPress = this._eventSelectedMenu.bind(this);
-		this._toggleSelectedDrawer = this._toggleSelectedDrawer.bind(this);
 		this.state = {
 			// drawerSelected: [],
 			drawerSelected: [],
@@ -82,7 +82,7 @@ class Drawer extends Component {
 
 	_goToFavorites() {
 		// this._eventSelectedMenu(1);
-		this._toggleDrawer();
+		//this._toggleDrawer();
 		this.props.navigator.showModal({
 			screen: 'movieapp.Favorites',
 			title: 'Favorites movies'
@@ -97,9 +97,19 @@ class Drawer extends Component {
 		});
 	}
 
-	_toggleSelectedDrawer(id) {
-		// this._toggleDrawer();
+	toggleDrawer(id) {
 		this.props.actions.clickOnMenu(id);
+		this._toggleDrawer();
+	}
+
+	bind(methodName, ...args) {
+		const key = JSON.stringify({ methodName, args });
+
+		if (!this.cache[key]) {
+			this.cache[key] = this[methodName].bind(this, ...args);
+		}
+
+		return this.cache[key];
 	}
 
 	render() {
@@ -118,9 +128,8 @@ class Drawer extends Component {
 				<View style={styles.container}>
 					<View style={styles.drawerList}>
 						{
-
-							(drawers) ? drawers.map((value, item) =>
-								<SideDrawerItem key={item} item={value} inheritFunctions={() => this._toggleSelectedDrawer(value.id)} id={value.id} isActive={value.isActive} />
+							(drawers) ? drawers.map((item, index) =>
+								<SideDrawerItem key={index} {...item} onPressFunc={() => this.toggleDrawer(item.id)} />
 							)
 								:
 								<TouchableOpacity onPress={this._openSearch}>
@@ -131,7 +140,6 @@ class Drawer extends Component {
 										</Text>
 									</View>
 								</TouchableOpacity>
-
 						}
 
 						<TouchableOpacity onPress={this._openSearch}>
@@ -160,9 +168,6 @@ class Drawer extends Component {
 						<TouchableOpacity onPress={this._goToFavorites}>
 							<View style={styles.drawerListItem}>
 								{favorites}
-								{/*<Text style={(this.state.drawerSelected === 1) ?  styles.selectedDrawerMenuText : styles.drawerListItemText} >*/}
-									{/*Favorite*/}
-								{/*</Text>*/}
 								<Text style={styles.selectedDrawerMenuText} >
 									Favorite
 								</Text>

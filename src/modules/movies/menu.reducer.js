@@ -11,23 +11,20 @@ export default function (state = secondState.menu, action) {
 				drawers: action.actionMenu
 			};
 		case types.MENU_CLICKED:
-			// return {
-			// 	...state,
-			// 	drawers: action.actionMenu
-			// };
 
-			const actives = state.drawers.map(drawer =>
-				(drawer.isActive === true)
-					? { ...drawer, isActive: !drawer.isActive }
-					: drawer
-			);
+			// const actives = state.drawers.map(drawer =>
+			// 	(drawer.isActive === true)
+			// 		? { ...drawer, isActive: !drawer.isActive }
+			// 		: drawer
+			// );
 
-
-			const drawers = actives.map(drawer =>
+			const drawers = state.drawers.map(drawer => {
+				return (
 				(drawer.id === action.actionMenu)
-				? { ...drawer, isActive: !drawer.isActive }
-				: drawer
-			);
+					? { ...drawer, isActive: true }
+					: { ...drawer, isActive: false }
+				)});
+			// return Object.assign({ drawers }, drawers);
 			return Object.assign({ drawers }, drawers);
 		default:
 			return state;
