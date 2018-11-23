@@ -60,21 +60,24 @@ class Movie extends Component {
 		this._doToastNotification = this._doToastNotification.bind(this);
 		this._checkFavoriteMovie = this._checkFavoriteMovie.bind(this);
 		this._retrieveSimilarMovies = this._retrieveSimilarMovies.bind(this);
+		console.log('----> constructor() ');
 	}
 
-	componentWillMount() {
-
+	componentDidUpdate() {
+		console.log('----> did update() ');
 	}
 
 	componentDidMount() {
-		console.log('fetch the similar movies', this.state.isFavorite);
+		console.log('----> did mount() ');
 		this._retrieveDetails();
-		this._checkFavoriteMovie();
-		this._retrieveSimilarMovies();
+		// this._retrieveSimilarMovies(); // add this carefully
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (typeof (nextProps) !== 'undefined' && nextProps.details) this._checkFavoriteMovie(nextProps);
+		if (typeof (nextProps) !== 'undefined' && nextProps.details) {
+			this._checkFavoriteMovie(nextProps);
+			console.log('----> component will receive props() -- with detail movie', nextProps.details);
+		}
 		if (nextProps.details) this.setState({ isLoading: false });
 	}
 	// shouldComponentUpdate(nextProps, nextState) {
@@ -86,7 +89,7 @@ class Movie extends Component {
 
 	_retrieveDetails(isRefreshed) {
 		this.props.actions.retrieveMovieDetails(this.props.movieId).then(() => {
-				this._retrieveYoutubeDetails();
+				//this._retrieveYoutubeDetails();
 		});
 		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
@@ -98,10 +101,11 @@ class Movie extends Component {
 				const currentProps = (nextPropsParam.details !== this.props.details) ? nextPropsParam.details : this.props.details;
 				const currentFavorites = (nextPropsParam.favorites.total_results !== this.props.favorites.total_results) ? nextPropsParam.favorites : this.props.favorites;
 				currentFavorites.results.map(item => {
-					console.log('at item :', item.id, currentProps.id);
+					console.log('at item and check :', item.id, currentProps.id);
 					// Check if the movie is favorite, set status for the movie
 					if (item.id === currentProps.id) {
 						this.setState({ isFavorite: true });
+						console.log('do set state --> :', this.state.isFavorite);
 					}
 				});
 			}
@@ -189,6 +193,7 @@ class Movie extends Component {
 
 	_sendFavoriteMovie(mediaId) {
 		axios.defaults.headers.post['Content-Type'] = 'application/json';
+		this.setState({ isFavorite: !this.state.isFavorite });
 		const request =
 			axios.post(`${TMDB_URL}/account/sickmydig/favorite?api_key=${TMDB_API_KEY}&session_id=${TMDB_SESSION_ID}`,
 				{
@@ -201,7 +206,7 @@ class Movie extends Component {
 
 				if (data.status_code <= 13) {
 					this.props.actions.retrieveFavorites();
-					this.setState({ isFavorite: !this.state.isFavorite });
+
 					this._doToastNotification(this.state.isFavorite);
 				}
 				if (data.status_code === 404) {
@@ -227,8 +232,9 @@ class Movie extends Component {
 
 	render() {
 		// console.log('<<<<<<<<<<<<<<<<<<< RENDER PHASE >>>>>>>>>>>>>>>>>>>>');
-		console.log('>>>>>>>>>>>>>>>>>>>>>> Movie render');
+
 		const { details } = this.props;
+		console.log('>>>>>>>>>>>>>>>>>>>>>> render', this.state.isFavorite);
 		const info = details;
 		const iconStar = <Icon name="md-star" size={16} color="#F5B642" />;
 		// '2018-09-08'
