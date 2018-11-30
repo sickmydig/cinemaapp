@@ -23,7 +23,8 @@ export default function (state = secondState.menu, action) {
 				(drawer.id === action.actionMenu)
 					? { ...drawer, isActive: true }
 					: { ...drawer, isActive: false }
-				)});
+				);
+			});
 			// return Object.assign({ drawers }, drawers);
 			return Object.assign({ drawers }, drawers);
 		default:

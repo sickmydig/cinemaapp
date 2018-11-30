@@ -22,14 +22,11 @@ export const cache = {};
 class Drawer extends Component {
 	constructor(props) {
 		super(props);
-
 		this._goToMovies = this._goToMovies.bind(this);
 		this._goToFavorites = this._goToFavorites.bind(this);
 		this._openSearch = this._openSearch.bind(this);
-		this._eventSelectedMenu = this._eventSelectedMenu.bind(this);
-		//this._onEventPress = this._eventSelectedMenu.bind(this);
+		// this._eventSelectedMenu = this._eventSelectedMenu.bind(this);
 		this.state = {
-			// drawerSelected: [],
 			drawerSelected: [],
 			isLoading: true,
 			list: {
@@ -38,9 +35,6 @@ class Drawer extends Component {
 		};
 	}
 
-	// _onEventPress(data) {
-	// 	this.setState({ drawerSelected: data });
-	// }
 	componentWillMount() {
 
 	}
@@ -59,11 +53,6 @@ class Drawer extends Component {
 		return true;
 	}
 
-	_eventSelectedMenu() {
-		// const currentPick = this.setState({ drawerSelected: menu });
-		console.log('current menu item at', this.state.drawerSelected);
-	}
-
 	_openSearch() {
 		this._toggleDrawer();
 		this.props.navigator.showModal({
@@ -73,7 +62,6 @@ class Drawer extends Component {
 	}
 
 	_goToMovies() {
-		// this._eventSelectedMenu(0);
 		this._toggleDrawer();
 		this.props.navigator.popToRoot({
 			screen: 'movieapp.Movies'
@@ -81,7 +69,6 @@ class Drawer extends Component {
 	}
 
 	_goToFavorites() {
-		// this._eventSelectedMenu(1);
 		//this._toggleDrawer();
 		this.props.navigator.showModal({
 			screen: 'movieapp.Favorites',
@@ -113,11 +100,12 @@ class Drawer extends Component {
 	}
 
 	render() {
+		// console.log('at render drawer');
 		const { drawers } = this.props;
 		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
 		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
 		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
-		const favorites = (<IconEx name="volume-down" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
+		const favorites = (<IconEx name="tag" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
 
 		// The way to retrieve current drawer item
 		const fontFamily = drawerStylesMaker({ weight: 'SemiBold', style: 'Italic', color: 'blue', drawerItem: 'favorite' });
@@ -126,6 +114,12 @@ class Drawer extends Component {
 		return (
 			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
 				<View style={styles.container}>
+					<View style={styles.drawerListItem}>
+						{iconSearch}
+						<Text style={styles.drawerListItemText}>
+							not yet add drawers
+						</Text>
+					</View>
 					<View style={styles.drawerList}>
 						{
 							(drawers) ? drawers.map((item, index) =>

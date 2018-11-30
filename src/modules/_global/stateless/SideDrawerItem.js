@@ -18,9 +18,14 @@ const SideDrawerItem = ({ title, isActive, onPressFunc, id }) => (
 );
 
 const styles = StyleSheet.create({
+	drawerHeader: {
+		flexDirection: 'row',
+		alignItems: 'flex-start',
+		// marginBottom: 22
+	},
 	drawerListItem: {
 		flexDirection: 'row',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		marginBottom: 22
 	},
 	normal: {

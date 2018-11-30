@@ -17,7 +17,7 @@ import WithLoading from './WithLoading';
 import CardCategory from './components/CardCategory';
 import CardMixed from './components/CardMixed';
 
-const CategoryWithLoading = WithLoading(CardCategory);
+// const CategoryWithLoading = WithLoading(CardCategory);
 const CategoryMixed = WithLoading(CardMixed);
 class Search extends Component {
 	constructor(props) {
@@ -155,7 +155,7 @@ class Search extends Component {
 				</View>
 				{ !this.state.isLoading && this._renderListView() }
 				{/*<CategoryWithLoading isLoading={false} genres={this.state.genres} message={'this is more parameter i passed over'} />*/}
-				{/*<CategoryMixed isLoading={false} genres={this.props.genres} />*/}
+				<CategoryMixed isLoading={false} genres={this.props.genres} />
 			</View>
 		);
 	}
