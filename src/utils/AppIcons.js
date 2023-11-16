@@ -30,6 +30,7 @@ const iconsLoaded = new Promise((resolve, reject) => {
 
 		// Call resolve (and we are done)
 		resolve(true);
+
 	});
 });
 
