@@ -27,7 +27,6 @@ const iconsLoaded = new Promise((resolve, reject) => {
 	).then(sources => {
 		Object.keys(icons)
 		.forEach((iconName, idx) => (iconsMap[iconName] = sources[idx]));
-
 		// Call resolve (and we are done)
 		resolve(true);
 	});
