@@ -15,6 +15,7 @@ const icons = {
 };
 
 
+
 const iconsMap = {};
 const iconsLoaded = new Promise((resolve, reject) => {
 	Promise.all(
