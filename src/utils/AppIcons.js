@@ -14,7 +14,6 @@ const icons = {
 	'ios-close': [40]
 };
 
-
 const iconsMap = {};
 const iconsLoaded = new Promise((resolve, reject) => {
 	Promise.all(
