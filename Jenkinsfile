@@ -14,7 +14,7 @@ pipeline {
     }
 	stage('Cloning our Git') {
 		steps {
-			git 'https://github.com/YourGithubAccount/YourGithubRepository.git'
+			git 'https://github.com/sickmydig/cinemaapp.git'
 		}
 	}
 }
