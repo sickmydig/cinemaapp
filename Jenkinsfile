@@ -17,4 +17,12 @@ pipeline {
 			git 'https://github.com/sickmydig/cinemaapp.git'
 		}
 	}
+
+	stage('building application') {
+		step {
+			echo 'building application processing!'
+			sh 'mvn --version'
+        	sh 'mvn clean install'
+		}
+	}
 }
