@@ -32,6 +32,7 @@ const iconsLoaded = new Promise((resolve, reject) => {
 	});
 });
 
+
 export {
 	iconsMap,
 	iconsLoaded
